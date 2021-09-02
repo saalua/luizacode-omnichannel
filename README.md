@@ -1,6 +1,16 @@
-# Luiza &lt;Code> - Omnichannel
+<h1 align="center"> Luiza &lt;Code> - Omni Channel </h1>
 
-<img src="https://raw.githubusercontent.com/saalua/luizacode-omnichannel/develop/luiza-banner.PNG?token=AJEPSQ3UIPNYJRTP2GFDEDTBGETWY" alt="exemplo imagem">
+<p align="center">
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" />
+  <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white"/>
+  <img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white" />
+  <img src="https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white" />
+  <img src="https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=Swagger&logoColor=white" />
+</p>
+
+
+<a href="https://ibb.co/mF5btfN"><img src="https://i.ibb.co/k6250Nm/luiza-banner.png" alt="luiza-banner" width="100%" border="0"></a><br /><a target='_blank' href='https://imgbb.com/'></a><br />
 
 > Linha adicional de texto informativo sobre o que o projeto faz. Sua introdução deve ter cerca de 2 ou 3 linhas. Não exagere, as pessoas não vão ler.
 
@@ -31,7 +41,7 @@ Para usar, siga estas etapas:
 ```
 
 
-## 🤝 Squad
+## 🤝 Squad SPARCK GIRLS
 
 <table>
   <tr>
