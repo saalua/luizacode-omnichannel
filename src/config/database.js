@@ -1,8 +1,11 @@
+require('dotenv').config()
+console.log(process.env.DB)
+
 module.exports = {
+    database: process.env.DB,
+    username: process.env.USER,
+    password: process.env.PASS,
+    host: process.env.HOST,
+    port: process.env.PGPORT,
     dialect: 'postgres',
-    host: 'localhost',
-    port: 5432,
-    database: 'db_omnichannel',
-    username: 'postgres',
-    password: 'postgres'
 }

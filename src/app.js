@@ -5,6 +5,7 @@ const { sequelize } = require('./models')
 const app = express()
 
 app.use(express.json())
+app.use(express.urlencoded({  extended:true }));
 app.use('/', routers)
 
 sequelize.sync().then(() => {
@@ -13,4 +14,5 @@ sequelize.sync().then(() => {
 
 var server = app.listen(process.env.PORT || 3000, () => {
     console.log("Server listening on port %d in %s mode", server.address().port, app.settings.env);
+
 });
