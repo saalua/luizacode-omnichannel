@@ -1,0 +1,26 @@
+{
+  "name": "luizacode-omnichannel",
+  "version": "1.0.0",
+  "description": "\"API NodeJS para resolver  a funcionalidade de Omni Channel do cliente. Projeto proposto na aceleração Luiza Code, turma NodeJS.\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saalua/luizacode-omnichannel.git"
+  },
+  "author": "\"Julia, Layane, Letícia, Luana, Nathália e Walquíria\"",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/saalua/luizacode-omnichannel/issues"
+  },
+  "homepage": "https://github.com/saalua/luizacode-omnichannel#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-routes": "^1.0.1",
+    "pg": "^8.7.1",
+    "sequelize": "^6.6.5"
+  }
+}
