@@ -4,5 +4,5 @@ module.exports = {
     port: 5432,
     database: 'db_omnichannel',
     username: 'postgres',
-    password: ''
+    password: 'postgres'
 }
