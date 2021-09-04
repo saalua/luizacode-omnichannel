@@ -1,20 +1,45 @@
-const loja = (sequelize, DataTypes) => {
-    const Loja = sequelize.define('Loja', {
-        nome: {
-            type: DataTypes.STRING,
-            allowNull: false
+module.exports = (sequelize, DataTypes) => {
+    const Lojas = sequelize.define(
+        'Loja',
+        {
+            id: {
+                type: DataTypes.INTEGER,
+                primaryKey: true,
+                autoIncrement: true,
+            },
+            filial: {
+                type: DataTypes.STRING,
+                allowNull: false,
+            },
+            endereco: {
+                type: DataTypes.STRING,
+                allowNull: false,
+            },
+            bairro: {
+                type: DataTypes.STRING,
+                allowNull: false,
+            },
+            cidade: {
+                type: DataTypes.STRING,
+                allowNull: false,
+            },
+            cep: {
+                type: DataTypes.STRING,
+                allowNull: false,
+            },
         },
-        endereco: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        telefone: {
-            type: DataTypes.STRING,
-            allowNull: false
+        {
+            tableName: 'lojas',
+            timestamps: false,
         }
-    }, {
-        tableName: 'loja'
-    })
-    return Loja
-}
-module.exports = loja
+    );
+
+    Lojas.associate = (models) => {
+        Lojas.hasMany(models.Pedidos, {
+            foreignKey: 'idLoja',
+            as: 'loja',
+        });
+    };
+
+    return Lojas;
+};
