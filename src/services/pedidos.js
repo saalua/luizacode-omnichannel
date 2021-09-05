@@ -2,9 +2,13 @@ class PedidoService {
     constructor (pedidoModel) {
         this.pedido = pedidoModel
     }
-  
-    async get () {
-      const pedidos = await this.pedido.findAll()
+
+    async get (idCliente) {
+      const pedidos = await this.pedido.findAll({
+        where: {
+          idCliente
+        }
+      })
       return pedidos
     }
 

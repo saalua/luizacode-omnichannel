@@ -7,7 +7,8 @@ const PedidoService = require('../services/pedidos')
 const pedidoService = new PedidoService(pedido)
 
 router.get('/', async (req, res) => {
-  const pedidos = await pedidoService.get()
+  const { idCliente } = req.query
+  const pedidos = await pedidoService.get(idCliente)
   res.status(200).json(pedidos)
 })
 
