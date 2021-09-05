@@ -10,7 +10,8 @@ const pedidoService = new PedidoService(pedido)
 router.get('/',
     check('idCliente')
         .not().isEmpty()
-        .matches(/\d/),
+        .matches(/\d/)
+        .withMessage('Para consultar os pedidos é obrigatório informar o parâmetro idCliente que precisa ser um valor numérico'),
     async (req, res) => {
 
         const errors = validationResult(req)
