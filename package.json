@@ -7,7 +7,8 @@
     "prestart": "npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all $",
     "drop": "npx sequelize db:migrate:undo:all",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/app.js"
+    "start": "node src/app.js",
+    "fast-start": "node src/app.js --ignore-prestart-scripts"
   },
   "repository": {
     "type": "git",
