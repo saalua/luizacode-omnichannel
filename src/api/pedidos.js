@@ -3,10 +3,20 @@ const router = express.Router()
 const { check, validationResult } = require('express-validator');
 const { restart } = require('nodemon');
 
-const { pedido } = require('../models')
+const { pedido } = require('../models');
 const { PedidoService, FINALIZAR_PEDIDO } = require('../services/pedidos')
 
 const pedidoService = new PedidoService(pedido)
+
+router.get('/:idPedido', async (req, res) => {
+    const { idPedido } = req.params
+    const pedidoEncontrado = await pedidoService.getById(idPedido)
+    if (pedidoEncontrado == null) {
+        res.status(404).send()
+    } else {
+        res.status(200).json(pedidoEncontrado)
+    }
+})
 
 router.get('/',
     check('idCliente')
