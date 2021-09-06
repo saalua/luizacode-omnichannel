@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router()
-const { check, validationResult } = require('express-validator')
+const { check, validationResult } = require('express-validator');
+const { restart } = require('nodemon');
 
 const { pedido } = require('../models')
-const PedidoService = require('../services/pedidos')
+const { PedidoService, FINALIZAR_PEDIDO } = require('../services/pedidos')
 
 const pedidoService = new PedidoService(pedido)
 
@@ -22,5 +23,21 @@ router.get('/',
         const pedidos = await pedidoService.getAllByIdCliente(idCliente)
         res.status(200).json(pedidos)
     })
+
+router.post('/:idPedido/finalizar', async (req, res) => {
+    const { idPedido } = req.params
+    const resultado = await pedidoService.finalizarPedido(idPedido)
+    switch(resultado) {
+        case FINALIZAR_PEDIDO.FINALIZADO:
+            res.status(200).send()
+            break
+        case FINALIZAR_PEDIDO.PEDIDO_NAO_ENCONTRADO:
+            res.status(404).send()
+            break
+        case FINALIZAR_PEDIDO.STATUS_PEDIDO_IMPEDE_FINALIZAR:
+            res.status(400).json({ errors: [{msg: 'Só é possível finalizar pedidos que estejam em andamento'}]})
+            break
+    }
+})
 
 module.exports = router
