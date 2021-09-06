@@ -3,7 +3,7 @@ class PedidoService {
         this.pedido = pedidoModel
     }
 
-    async get(idCliente) {
+    async getAllByIdCliente(idCliente) {
         const pedidos = await this.pedido.findAll({
             where: {
                 idCliente

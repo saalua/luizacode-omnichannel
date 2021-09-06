@@ -19,7 +19,7 @@ router.get('/',
             return res.status(400).json({ errors: errors.array() })
         }
         const { idCliente } = req.query
-        const pedidos = await pedidoService.get(idCliente)
+        const pedidos = await pedidoService.getAllByIdCliente(idCliente)
         res.status(200).json(pedidos)
     })
 
