@@ -112,5 +112,23 @@ router.post('/:idPedido/finalizar',
                 break
         }
     })
+    router.post('/', async (req, res) =>{
 
+        const {idCliente, idProdutos, id_loja} = req.body;
+
+        try{
+          await pedido.create({
+              idCliente, 
+              idLoja: id_loja,
+              idProdutos,
+              status: "REALIZADA",
+              total: 0
+            })
+          res.status(201).send('Cliente cadastrado com sucesso')
+        } catch(erro){
+            console.log(erro);
+          res.status(400).send('Não foi possivel cadastrar o cliente')
+        }
+      });
+      
 module.exports = router
