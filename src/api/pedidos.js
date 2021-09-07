@@ -15,6 +15,20 @@ router.get('/:idPedido',
         .withMessage('Para consultar um pedido é necessário informar o seu id, que precisa ser um valor numérico'),
     async (req, res) => {
 
+/*
+    #swagger.tags = ['Pedidos']
+    #swagger.description = 'Endpoint para a consulta de pedidos do cliente.' 
+    #swagger.responses[200] = {
+    description: 'Consulta realizada com sucesso.'
+    }
+    #swagger.responses[404] = {
+    description: 'Pedido não encontrado.'
+    }
+    #swagger.responses[400] = {
+    description: 'Houve algum erro na requisição.'
+    }
+*/
+
         const errors = validationResult(req)
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() })
@@ -36,6 +50,20 @@ router.get('/',
         .withMessage('Para consultar os pedidos é obrigatório informar o parâmetro idCliente que precisa ser um valor numérico'),
     async (req, res) => {
 
+/*
+    #swagger.tags = ['Pedidos']
+    #swagger.description = 'Endpoint para a consulta do status dos pedidos do cliente.' 
+    #swagger.responses[200] = {
+    description: 'Consulta realizada com sucesso.'
+    }
+    #swagger.responses[404] = {
+    description: 'Pedido não encontrado.'
+    }
+    #swagger.responses[400] = {
+    description: 'Houve algum erro na requisição.'
+    }
+*/
+
         const errors = validationResult(req)
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() })
@@ -51,6 +79,21 @@ router.post('/:idPedido/finalizar',
         .matches(/\d/)
         .withMessage('Para finalizar um pedido é obrigatório informar o seu id, que precisa ser um valor numérico'),
     async (req, res) => {
+
+/*
+    #swagger.tags = ['Pedidos']
+    #swagger.description = 'Endpoint para finalizar o pedido do cliente.' 
+    #swagger.responses[200] = {
+    description: 'Pedido finalizado.'
+    }
+    #swagger.responses[404] = {
+    description: 'Pedido não encontrado.'
+    }
+    #swagger.responses[400] = {
+    description: 'Houve algum erro na requisição.'
+    }
+*/
+
         const errors = validationResult(req)
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() })
