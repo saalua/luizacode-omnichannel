@@ -10,6 +10,12 @@ const RETIRAR_PEDIDO = {
     RETIRADO: 'RETIRADO'
 }
 
+const STATUS = {
+    ANDAMENTO: 'ANDAMENTO',
+    REALIZADO: 'REALIZADA',
+    RETIRADO: 'RETIRADO'
+}
+
 class PedidoService {
     constructor(pedidoModel) {
         this.pedido = pedidoModel
@@ -34,9 +40,9 @@ class PedidoService {
         
         if (pedidoEncontrado == null) return RETIRAR_PEDIDO.PEDIDO_NAO_ENCONTRADO
 
-        if (pedidoEncontrado.status !== 'REALIZADA') return RETIRAR_PEDIDO.STATUS_PEDIDO_IMPEDE_RETIRAR
+        if (pedidoEncontrado.status !== STATUS.REALIZADO) return RETIRAR_PEDIDO.STATUS_PEDIDO_IMPEDE_RETIRAR
 
-        pedidoEncontrado.status = 'RETIRADO'
+        pedidoEncontrado.status = STATUS.RETIRADO
         await pedidoEncontrado.save()
         return RETIRAR_PEDIDO.RETIRADO
     }
@@ -46,9 +52,9 @@ class PedidoService {
         
         if (pedidoEncontrado == null) return FINALIZAR_PEDIDO.PEDIDO_NAO_ENCONTRADO
 
-        if (pedidoEncontrado.status !== 'ANDAMENTO') return FINALIZAR_PEDIDO.STATUS_PEDIDO_IMPEDE_FINALIZAR
+        if (pedidoEncontrado.status !== STATUS.ANDAMENTO) return FINALIZAR_PEDIDO.STATUS_PEDIDO_IMPEDE_FINALIZAR
 
-        pedidoEncontrado.status = 'REALIZADA'
+        pedidoEncontrado.status = STATUS.REALIZADO
         await pedidoEncontrado.save()
         return FINALIZAR_PEDIDO.FINALIZADO
     }
