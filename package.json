@@ -1,7 +1,7 @@
 {
   "name": "luizacode-omnichannel",
   "version": "1.0.0",
-  "description": "\"API NodeJS para resolver  a funcionalidade de Omni Channel do cliente. Projeto proposto na aceleração Luiza Code, turma NodeJS.\"",
+  "description": "\"API NodeJS que desempenha a funcionalidade de Omni Channel do cliente. Projeto proposto no encerramento da aceleração Luiza Code, turma NodeJS.\"",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
