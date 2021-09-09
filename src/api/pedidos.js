@@ -71,7 +71,16 @@ router.post('/:idPedido/finalizar',
     })
 
 router.post('/:idPedido/retirar',
-        async (req, res) => {
+    check('idPedido')
+        .not().isEmpty()
+        .matches(/\d/)
+        .withMessage('Para retirar um pedido é obrigatório informar o seu id, que precisa ser um valor numérico'),
+    async (req, res) => {
+        const errors = validationResult(req)
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() })
+        }
+        
         const { idPedido } = req.params
         const resultado = await pedidoService.retirarPedido(idPedido)
         switch (resultado) {
