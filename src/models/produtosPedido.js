@@ -3,11 +3,11 @@ module.exports = (sequelize, DataTypes) => {
         'ProdutosPedidos',
         {
             idPedido: {
-                types: DataTypes.INTEGER,
+                type: DataTypes.INTEGER,
                 allowNull: false
             },
             idProduto: {
-                types: DataTypes.INTEGER,
+                type: DataTypes.INTEGER,
                 allowNull: false
             },
         },

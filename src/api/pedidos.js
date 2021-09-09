@@ -3,12 +3,14 @@ const router = express.Router()
 const { check, validationResult } = require('express-validator');
 const { restart } = require('nodemon');
 
-const { pedido } = require('../models');
-const { PedidoService, FINALIZAR_PEDIDO } = require('../services/pedidos')
+const { pedido, produtosPedido } = require('../models');
+const { PedidoService, FINALIZAR_PEDIDO } = require('../services/pedidos');
+const { ProdutosPedidosService } = require('../services/produtosPedido');
 
-const pedidoService = new PedidoService(pedido)
+const pedidoService = new PedidoService(pedido);
+const produtosPedidosService = new ProdutosPedidosService(produtosPedido);
 
-router.get('/:idPedido',
+  router.get('/:idPedido',
     check('idPedido')
         .not().isEmpty()
         .matches(/\d/)
@@ -29,7 +31,7 @@ router.get('/:idPedido',
         }
     })
 
-router.get('/',
+  router.get('/',
     check('idCliente')
         .not().isEmpty()
         .matches(/\d/)
@@ -45,7 +47,7 @@ router.get('/',
         res.status(200).json(pedidos)
     })
 
-router.post('/:idPedido/finalizar',
+  router.post('/:idPedido/finalizar',
     check('idPedido')
         .not().isEmpty()
         .matches(/\d/)
@@ -69,5 +71,23 @@ router.post('/:idPedido/finalizar',
                 break
         }
     })
+
+    router.delete('/:idPedido/remover/:idProduto', 
+      async (req, res) => {
+        
+        const erros = validationResult(req)
+        if(!erros.isEmpty()) {
+          return res.status(400).json({erros: erros.array()})
+        }
+
+        try {
+          const { pedido, produto } = req.params
+          const produtoRemovido = await produtosPedidosService.removerProduto(pedido, produto)
+          
+          res.status(200).json({"produto removido com sucesso": produtoRemovido})
+        } catch(erro) {
+          res.json({message: erro.message})
+        }
+      });
 
 module.exports = router
