@@ -8,6 +8,11 @@ class ProdutoService {
     return produtos
   }
 
+  async getProdutoById() {
+    const produto = await this.produto.findOne()
+    return produto
+  }
+
 }
 
 module.exports = ProdutoService
