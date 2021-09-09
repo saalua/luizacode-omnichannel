@@ -72,6 +72,8 @@ const produtosPedidosService = new ProdutosPedidosService(produtosPedido);
         }
     })
 
+
+    /* não pode remover se o produto ja estiver finalizado e retirado*/
     router.delete('/:idPedido/remover/:idProduto', 
       async (req, res) => {
         
@@ -90,4 +92,28 @@ const produtosPedidosService = new ProdutosPedidosService(produtosPedido);
         }
       });
 
+
+    router.post('/', async (req, res) =>{
+        const {idCliente, idProdutos, id_loja} = req.body;
+
+        /** o request body vai ser um array com vários id de produto, 
+         * 
+         * cadastrar: tem que percorrer o array dando create na tabela de produtospedidos passando o id do pedido e id do produto
+         * Regra: verificar se os produtos tem o mesmo id 
+         */
+        try{
+          await pedido.create({
+              idCliente, 
+              idLoja: id_loja,
+              idProdutos,
+              status: "REALIZADA",
+              total: 0
+            })
+          res.status(201).send('Cliente cadastrado com sucesso')
+        } catch(erro){
+            console.log(erro);
+          res.status(400).send('Não foi possivel cadastrar o cliente')
+        }
+      });
+      
 module.exports = router

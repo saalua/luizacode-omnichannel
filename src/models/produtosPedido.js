@@ -16,10 +16,5 @@ module.exports = (sequelize, DataTypes) => {
         }
     );
 
-    ProdutosPedidos.associate = (models) => {
-        ProdutosPedidos.belongsTo(models.Pedido, {foreignKey: 'idPedido'})
-        ProdutosPedidos.belongsTo(models.Produtos, {foreignKey: 'idProduto'})
-    };
-
     return ProdutosPedidos;
 };

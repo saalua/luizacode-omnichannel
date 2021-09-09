@@ -4,8 +4,6 @@
   "description": "\"API NodeJS para resolver  a funcionalidade de Omni Channel do cliente. Projeto proposto na aceleração Luiza Code, turma NodeJS.\"",
   "main": "index.js",
   "scripts": {
-    "prestart": "npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all $",
-    "drop": "npx sequelize db:migrate:undo:all",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/app.js",
     "dev": "nodemon src/app.js",
@@ -30,7 +28,6 @@
     "sequelize": "^6.6.5"
   },
   "devDependencies": {
-    "nodemon": "^2.0.12",
-    "sequelize-cli": "^6.2.0"
+    "nodemon": "^2.0.12"
   }
 }
