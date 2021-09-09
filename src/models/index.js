@@ -13,6 +13,15 @@ const cliente = Cliente(sequelize, Sequelize.DataTypes);
 const Pedido = require('./pedido');
 const pedido = Pedido(sequelize, Sequelize.DataTypes);
 
+cliente.hasMany(pedido);
+pedido.belongsTo(cliente);
+
+loja.hasMany(pedido);
+pedido.belongsTo(loja);
+
+pedido.belongsToMany(produto, { through: 'ProdutosPedidos' });
+produto.hasMany(pedido);
+
 const db = {
   loja,
   produto,

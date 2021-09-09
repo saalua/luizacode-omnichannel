@@ -10,18 +10,10 @@ module.exports = (sequelize, DataTypes) => {
             idLoja: {
                 type: DataTypes.INTEGER,
                 allowNull: false,
-                references: {
-                    model: 'lojas',
-                    key: 'id',
-                },
             },
             idCliente: {
                 type: DataTypes.INTEGER,
                 allowNull: false,
-                references: {
-                    model: 'clientes',
-                    key: 'id',
-                },
             },
             total: {
                 type: DataTypes.FLOAT,
@@ -36,22 +28,6 @@ module.exports = (sequelize, DataTypes) => {
             timestamps: false,
         }
     );
-
-    Pedidos.associate = (models) => {
-        Pedidos.belongsTo(models.Clientes, {
-            foreignKey: 'idCliente',
-            as: 'cliente',
-        });
-        Pedidos.belongsTo(models.Lojas, {
-            foreignKey: 'idLoja',
-            as: 'loja',
-        });
-        Pedidos.belongsToMany(models.Produtos, {
-            through: 'ProdutosPedidos',
-            foreignKey: 'idPedido',
-            as: 'pedido',
-        })
-    };
 
     return Pedidos;
 };

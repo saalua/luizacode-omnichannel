@@ -29,13 +29,6 @@ module.exports = (sequelize, DataTypes) => {
     {
         timestamps: false,
     });
-
-    Clientes.associate = (models) => {
-        Clientes.hasMany(models.Pedidos, {
-            foreignKey: 'idCliente',
-            as: 'loja',
-        });
-    };
     
     return Clientes;
 };
