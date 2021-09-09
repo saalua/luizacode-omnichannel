@@ -4,7 +4,7 @@ const { check, validationResult } = require('express-validator');
 const { restart } = require('nodemon');
 
 const { pedido } = require('../models');
-const { PedidoService, FINALIZAR_PEDIDO } = require('../services/pedidos')
+const { PedidoService, FINALIZAR_PEDIDO, RETIRAR_PEDIDO } = require('../services/pedidos')
 
 const pedidoService = new PedidoService(pedido)
 
@@ -69,7 +69,25 @@ router.post('/:idPedido/finalizar',
                 break
         }
     })
-    router.post('/', async (req, res) =>{
+
+router.post('/:idPedido/retirar',
+        async (req, res) => {
+        const { idPedido } = req.params
+        const resultado = await pedidoService.retirarPedido(idPedido)
+        switch (resultado) {
+            case RETIRAR_PEDIDO.RETIRADO:
+                res.status(200).send()
+                break
+            case RETIRAR_PEDIDO.PEDIDO_NAO_ENCONTRADO:
+                res.status(404).send()
+                break
+            case RETIRAR_PEDIDO.STATUS_PEDIDO_IMPEDE_RETIRAR:
+                res.status(400).json({ errors: [{ msg: 'Só é possível retirar pedidos que estejam realizados e ainda não foram retirados' }] })
+                break
+        }
+    })
+
+    router.post('/', async (req, res) => {
 
         const {idCliente, idProdutos, id_loja} = req.body;
 
