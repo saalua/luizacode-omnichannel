@@ -17,7 +17,7 @@ router.get('/:idPedido',
 
 /*
     #swagger.tags = ['Pedidos']
-    #swagger.description = 'Endpoint para a consulta de pedidos do cliente.' 
+    #swagger.description = 'Endpoint para a consulta de pedidos do cliente por ID.' 
     #swagger.responses[200] = {
     description: 'Consulta realizada com sucesso.'
     }
@@ -52,12 +52,12 @@ router.get('/',
 
 /*
     #swagger.tags = ['Pedidos']
-    #swagger.description = 'Endpoint para a consulta do status dos pedidos do cliente.' 
+    #swagger.description = 'Endpoint para a consulta de todos os pedidos do cliente.' 
     #swagger.responses[200] = {
     description: 'Consulta realizada com sucesso.'
     }
     #swagger.responses[404] = {
-    description: 'Pedido não encontrado.'
+    description: 'Pedidos não encontrados.'
     }
     #swagger.responses[400] = {
     description: 'Houve algum erro na requisição.'
@@ -113,6 +113,20 @@ router.post('/:idPedido/finalizar',
         }
     })
     router.post('/', async (req, res) =>{
+
+/*
+    #swagger.tags = ['Pedidos']
+    #swagger.description = 'Endpoint para se realizar um pedido.' 
+    #swagger.responses[200] = {
+    description: 'Pedido finalizado.'
+    }
+    #swagger.responses[404] = {
+    description: 'Pedido não encontrado.'
+    }
+    #swagger.responses[400] = {
+    description: 'Houve algum erro na requisição.'
+    }
+*/
 
         const {idCliente, idProdutos, id_loja} = req.body;
 

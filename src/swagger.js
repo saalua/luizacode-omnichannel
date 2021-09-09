@@ -24,11 +24,25 @@ const doc = {
             "description": "Endpoints relacionados ao recursos de produto."
         },
         {
+            "name": "Clientes",
+            "description": "Endpoints relacionados ao usuário."
+        },
+        {
             "name": "Pedidos",
             "description": "Endpoints relacionados aos pedidos do cliente."
         }
     ],
     definitions: {
+        Lojas: {
+            id: 1,
+            filial: "Magalu SP",
+            endereco: "Bairro Lago das Rosas, quadra 70, rua 92.",
+            bairro: "Lago das Rosas",
+            cidade: "São Paulo",
+            cep: "12345678",
+            updated_at: '2021-12-12 03:03:00',
+            created_at: '2021-12-12 03:03:00'
+        },
         Produtos: {
             id: 1,
             produto: 'Notebook',
@@ -39,15 +53,12 @@ const doc = {
             updated_at: '2021-12-12 03:03:00',
             created_at: '2021-12-12 03:03:00'
         },
-        Lojas: {
-            id: 1,
-            filial: "Magalu SP",
-            endereco: "Bairro Lago das Rosas, quadra 70, rua 92.",
-            bairro: "Lago das Rosas",
+        Clientes: {
+            nome: "Ana",
+            endereco: "São Paulo, rua Augusta, n° 835.",
+            bairro: "Jardim da Liberdade",
             cidade: "São Paulo",
-            cep: "12345678",
-            updated_at: '2021-12-12 03:03:00',
-            created_at: '2021-12-12 03:03:00'
+            cep: "12345678"
         }
     }
 }

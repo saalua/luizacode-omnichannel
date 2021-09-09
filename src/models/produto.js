@@ -30,13 +30,5 @@ module.exports = (sequelize, DataTypes) => {
         timestamps: false,
     });
 
-    Produtos.associate = (models) => {
-        Produtos.belongsToMany(models.Pedidos, {
-            through: 'ProdutosPedidos',
-            foreignKey: 'idProduto',
-            as: 'produto',
-        })
-    };
-
     return Produtos;
 }

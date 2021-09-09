@@ -17,6 +17,10 @@
       "description": "Endpoints relacionados ao recursos de produto."
     },
     {
+      "name": "Clientes",
+      "description": "Endpoints relacionados ao usuário."
+    },
+    {
       "name": "Pedidos",
       "description": "Endpoints relacionados aos pedidos do cliente."
     }
@@ -41,10 +45,13 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "Lista de lojas encontrada.",
             "schema": {
               "$ref": "#/definitions/Lojas"
-            }
+            },
+            "description": "Lista de lojas encontrada."
+          },
+          "201": {
+            "description": "Created"
           },
           "400": {
             "description": "Houve algum erro na requisição."
@@ -83,7 +90,7 @@
         "tags": [
           "Pedidos"
         ],
-        "description": "Endpoint para a consulta de pedidos do cliente.",
+        "description": "Endpoint para a consulta de pedidos do cliente por ID.",
         "parameters": [
           {
             "name": "idPedido",
@@ -110,7 +117,7 @@
         "tags": [
           "Pedidos"
         ],
-        "description": "Endpoint para a consulta do status dos pedidos do cliente.",
+        "description": "Endpoint para a consulta de todos os pedidos do cliente.",
         "parameters": [
           {
             "name": "idCliente",
@@ -121,6 +128,46 @@
         "responses": {
           "200": {
             "description": "Consulta realizada com sucesso."
+          },
+          "400": {
+            "description": "Houve algum erro na requisição."
+          },
+          "404": {
+            "description": "Pedidos não encontrados."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Pedidos"
+        ],
+        "description": "Endpoint para se realizar um pedido.",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "idCliente": {
+                  "example": "any"
+                },
+                "idProdutos": {
+                  "example": "any"
+                },
+                "id_loja": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pedido finalizado."
+          },
+          "201": {
+            "description": "Created"
           },
           "400": {
             "description": "Houve algum erro na requisição."
@@ -157,9 +204,94 @@
           }
         }
       }
+    },
+    "/clientes/": {
+      "post": {
+        "tags": [
+          "Clientes"
+        ],
+        "description": "Endpoint para o cadastro do cliente.",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "example": "any"
+                },
+                "endereco": {
+                  "example": "any"
+                },
+                "bairro": {
+                  "example": "any"
+                },
+                "cidade": {
+                  "example": "any"
+                },
+                "cep": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Clientes"
+            },
+            "description": "Cadastro realizado."
+          },
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Houve algum erro na requisição."
+          }
+        }
+      }
     }
   },
   "definitions": {
+    "Lojas": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "example": 1
+        },
+        "filial": {
+          "type": "string",
+          "example": "Magalu SP"
+        },
+        "endereco": {
+          "type": "string",
+          "example": "Bairro Lago das Rosas, quadra 70, rua 92."
+        },
+        "bairro": {
+          "type": "string",
+          "example": "Lago das Rosas"
+        },
+        "cidade": {
+          "type": "string",
+          "example": "São Paulo"
+        },
+        "cep": {
+          "type": "string",
+          "example": "12345678"
+        },
+        "updated_at": {
+          "type": "string",
+          "example": "2021-12-12 03:03:00"
+        },
+        "created_at": {
+          "type": "string",
+          "example": "2021-12-12 03:03:00"
+        }
+      }
+    },
     "Produtos": {
       "type": "object",
       "properties": {
@@ -197,24 +329,20 @@
         }
       }
     },
-    "Lojas": {
+    "Clientes": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "number",
-          "example": 1
-        },
-        "filial": {
+        "nome": {
           "type": "string",
-          "example": "Magalu SP"
+          "example": "Ana"
         },
         "endereco": {
           "type": "string",
-          "example": "Bairro Lago das Rosas, quadra 70, rua 92."
+          "example": "São Paulo, rua Augusta, n° 835."
         },
         "bairro": {
           "type": "string",
-          "example": "Lago das Rosas"
+          "example": "Jardim da Liberdade"
         },
         "cidade": {
           "type": "string",
@@ -223,14 +351,6 @@
         "cep": {
           "type": "string",
           "example": "12345678"
-        },
-        "updated_at": {
-          "type": "string",
-          "example": "2021-12-12 03:03:00"
-        },
-        "created_at": {
-          "type": "string",
-          "example": "2021-12-12 03:03:00"
         }
       }
     }
