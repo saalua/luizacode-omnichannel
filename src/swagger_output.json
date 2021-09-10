@@ -41,7 +41,7 @@
         "tags": [
           "Lojas"
         ],
-        "description": "Endpoints para se obter a lista das lojas.",
+        "description": "Endpoint para se obter a lista das lojas.",
         "parameters": [],
         "responses": {
           "200": {
@@ -67,7 +67,7 @@
         "tags": [
           "Produtos"
         ],
-        "description": "Endpoints para se obter uma lista de produtos.",
+        "description": "Endpoint para se obter uma lista de produtos.",
         "parameters": [],
         "responses": {
           "200": {
@@ -81,6 +81,33 @@
           },
           "404": {
             "description": "Lista de produtos não encontrada."
+          }
+        }
+      }
+    },
+    "/produtos/{id}": {
+      "get": {
+        "tags": [
+          "Produtos"
+        ],
+        "description": "Endpoint para acessar um produto pelo seu ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Produto encontrado."
+          },
+          "400": {
+            "description": "Houve algum erro na requisição."
+          },
+          "404": {
+            "description": "Produto não encontrado."
           }
         }
       }
@@ -134,46 +161,6 @@
           },
           "404": {
             "description": "Pedidos não encontrados."
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Pedidos"
-        ],
-        "description": "Endpoint para se realizar um pedido.",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "idCliente": {
-                  "example": "any"
-                },
-                "idProdutos": {
-                  "example": "any"
-                },
-                "id_loja": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Pedido finalizado."
-          },
-          "201": {
-            "description": "Created"
-          },
-          "400": {
-            "description": "Houve algum erro na requisição."
-          },
-          "404": {
-            "description": "Pedido não encontrado."
           }
         }
       }
@@ -254,7 +241,10 @@
         ],
         "responses": {
           "200": {
-            "description": "Pedido cancelado."
+            "description": "Pedido finalizado."
+          },
+          "201": {
+            "description": "Created"
           },
           "400": {
             "description": "Houve algum erro na requisição."

@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
 
 /*
     #swagger.tags = ['Lojas']
-    #swagger.description = 'Endpoints para se obter a lista das lojas.' 
+    #swagger.description = 'Endpoint para se obter a lista das lojas.' 
     #swagger.responses[200] = {
       schema: { $ref: "#/definitions/Lojas"},
       description: 'Lista de lojas encontrada.'
