@@ -4,15 +4,18 @@ class ProdutoService {
   }
 
   async get() {
-    const produtos = await this.produto.findAll()
-    return produtos
+    const produtos = await this.produto.findAll();
+    return produtos;
   }
 
-  async getProdutoById() {
-    const produto = await this.produto.findOne()
-    return produto
+  async getProdutoById(id) {
+    const produto = await this.produto.findOne({
+      where: {
+        id
+      }
+    });
+    return produto;
   }
-
 }
 
-module.exports = ProdutoService
+module.exports = ProdutoService;

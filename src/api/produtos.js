@@ -11,5 +11,11 @@ router.get('/', async (req, res) => {
   res.status(200).json(produtos)
 })
 
+router.get('/:id', async (req, res) => {
+  const idProduto = req.params.id;
+  const produto = await produtoService.getProdutoById(idProduto)
+  res.status(200).json(produto)
+})
+
 module.exports = router
 
