@@ -119,6 +119,21 @@ router.post('/:idPedido/retirar',
         .matches(/\d/)
         .withMessage('Para retirar um pedido é obrigatório informar o seu id, que precisa ser um valor numérico'),
     async (req, res) => {
+
+/*
+    #swagger.tags = ['Pedidos']
+    #swagger.description = 'Endpoint para retirar o pedido do cliente.' 
+    #swagger.responses[200] = {
+    description: 'Pedido pronto para ser retirado.'
+    }
+    #swagger.responses[404] = {
+    description: 'Pedido não encontrado.'
+    }
+    #swagger.responses[400] = {
+    description: 'Houve algum erro na requisição.'
+    }
+*/
+
         const errors = validationResult(req)
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() })

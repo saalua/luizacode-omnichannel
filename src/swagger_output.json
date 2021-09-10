@@ -205,6 +205,33 @@
         }
       }
     },
+    "/pedidos/{idPedido}/retirar": {
+      "post": {
+        "tags": [
+          "Pedidos"
+        ],
+        "description": "Endpoint para retirar o pedido do cliente.",
+        "parameters": [
+          {
+            "name": "idPedido",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pedido pronto para ser retirado."
+          },
+          "400": {
+            "description": "Houve algum erro na requisição."
+          },
+          "404": {
+            "description": "Pedido não encontrado."
+          }
+        }
+      }
+    },
     "/clientes/": {
       "post": {
         "tags": [
