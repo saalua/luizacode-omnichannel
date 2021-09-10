@@ -227,5 +227,7 @@ router.post('/:idPedido/retirar',
           res.status(400).send('Não foi possivel cadastrar o cliente')
         }
       });
+
+      //adicionar o id pedido no array
       
 module.exports = router
