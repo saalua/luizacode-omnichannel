@@ -14,7 +14,7 @@
     },
     {
       "name": "Produtos",
-      "description": "Endpoints relacionados ao recursos de produto."
+      "description": "Endpoints relacionados aos recursos de produto."
     },
     {
       "name": "Clientes",
@@ -222,6 +222,39 @@
         "responses": {
           "200": {
             "description": "Pedido pronto para ser retirado."
+          },
+          "400": {
+            "description": "Houve algum erro na requisição."
+          },
+          "404": {
+            "description": "Pedido não encontrado."
+          }
+        }
+      }
+    },
+    "/pedidos/{idPedido}/remover/{idProduto}": {
+      "delete": {
+        "tags": [
+          "Pedidos"
+        ],
+        "description": "Endpoint para deletar um pedido.",
+        "parameters": [
+          {
+            "name": "idPedido",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "idProduto",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pedido deletado."
           },
           "400": {
             "description": "Houve algum erro na requisição."

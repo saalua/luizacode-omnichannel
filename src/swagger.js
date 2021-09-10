@@ -21,7 +21,7 @@ const doc = {
         },
         { 
             "name": "Produtos",
-            "description": "Endpoints relacionados ao recursos de produto."
+            "description": "Endpoints relacionados aos recursos de produto."
         },
         {
             "name": "Clientes",

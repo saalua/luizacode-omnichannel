@@ -13,6 +13,10 @@ const cliente = Cliente(sequelize, Sequelize.DataTypes);
 const Pedido = require('./pedido');
 const pedido = Pedido(sequelize, Sequelize.DataTypes);
 
+const ProdutosPedidos = require('./produtosPedido');
+const produtosPedido = ProdutosPedidos(sequelize, Sequelize.DataTypes);
+
+
 cliente.hasMany(pedido, {
   foreignKey: 'idCliente'
 });
@@ -35,7 +39,8 @@ const db = {
   produto,
   cliente,
   pedido,
-  sequelize,
+  produtosPedido,
+  sequelize
 };
 
 module.exports = db;
