@@ -88,6 +88,7 @@ router.post('/:idPedido/finalizar',
           res.status(400).send('Não foi possivel cadastrar o cliente')
         }
       });
+
       //adicionar o id pedido no array
       
 module.exports = router
