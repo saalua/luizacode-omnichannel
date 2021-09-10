@@ -3,11 +3,13 @@ const router = express.Router()
 const { check, validationResult } = require('express-validator');
 const { restart } = require('nodemon');
 
-const { pedido, produtosPedido } = require('../models');
+const { pedido, produtosPedido, produto } = require('../models');
 const { PedidoService, FINALIZAR_PEDIDO } = require('../services/pedidos');
+const ProdutoService = require('../services/produtos');
 const { ProdutosPedidosService } = require('../services/produtosPedido');
 
 const pedidoService = new PedidoService(pedido);
+const produtoService = new ProdutoService(produto);
 const produtosPedidosService = new ProdutosPedidosService(produtosPedido);
 
   router.get('/:idPedido',
@@ -122,10 +124,11 @@ router.post('/:idPedido/retirar',
             const produto = req = req.params.idProduto;
 
             const pedidoEncontrado = await pedidoService.getById(pedido);
+            const produtoEncontrado = await produtoService.getProdutoById(produto);
 
             if(pedidoEncontrado.status == 'ANDAMENTO') {
                 await produtosPedidosService.removerProduto(pedido, produto);
-                res.status(200).json({"produto removido do pedido:": pedidoEncontrado});
+                res.status(200).json({"Produto removido com sucesso": {"pedido": pedidoEncontrado, "produto": produtoEncontrado}});
             } else {
                 res.status(400).json("Não é possível alterar o pedido quando o status se encontra como REALIZADA ou RETIRADO");
             }
