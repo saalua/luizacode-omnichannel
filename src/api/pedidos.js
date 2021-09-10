@@ -5,6 +5,7 @@ const { restart } = require('nodemon');
 
 const { pedido } = require('../models');
 const { PedidoService, FINALIZAR_PEDIDO } = require('../services/pedidos')
+//adicionar a regra do pedido
 
 const pedidoService = new PedidoService(pedido)
 
@@ -87,5 +88,6 @@ router.post('/:idPedido/finalizar',
           res.status(400).send('Não foi possivel cadastrar o cliente')
         }
       });
+      //adicionar o id pedido no array
       
 module.exports = router

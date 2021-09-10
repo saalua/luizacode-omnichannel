@@ -1,5 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
     const ProdutosPedidos = sequelize.define(
+        
         'ProdutosPedidos',
         {
             idPedido: {

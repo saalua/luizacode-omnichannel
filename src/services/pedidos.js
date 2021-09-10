@@ -35,6 +35,12 @@ class PedidoService {
         return FINALIZAR_PEDIDO.FINALIZADO
     }
 
+    //adicionar banco de dados e retornar o id do pedido
+
+    
+    
+    //listar todos, procurar o id do pedido
+    //created e delete
 }
 
 module.exports = { PedidoService, FINALIZAR_PEDIDO }
