@@ -2,11 +2,6 @@ class ProdutosPedidosService {
     constructor(produtosPedidoModel) {
         this.produtosPedido = produtosPedidoModel
     }
-
-    async getProdutosPedidos() {
-        const encontrados = await this.produtosPedido.findAll()
-        return encontrados
-    }
  
     async removerProduto(idPedido, idProduto) {
         console.log(idPedido, idProduto)
@@ -15,8 +10,9 @@ class ProdutosPedidosService {
                 idPedido,
                 idProduto
             }
-        })
-        return produtoRemovido
+        });
+            
+        return produtoRemovido;
     }
 
     // * cadastrar: tem que percorrer o array dando create na tabela de produtospedidos passando o id do pedido e id do produto

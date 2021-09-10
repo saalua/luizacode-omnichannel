@@ -1,6 +1,3 @@
-const { ProdutosPedidoService } = require("./produtosPedido");
-const { produtosPedidos } = require('../models/produtosPedido')
-
 const FINALIZAR_PEDIDO = {
     PEDIDO_NAO_ENCONTRADO: 'PEDIDO_NAO_ENCONTRADO',
     STATUS_PEDIDO_IMPEDE_FINALIZAR: 'STATUS_PEDIDO_IMPEDE_FINALIZAR',
@@ -63,4 +60,4 @@ class PedidoService {
     }
 }
 
-module.exports = { PedidoService, FINALIZAR_PEDIDO, RETIRAR_PEDIDO }
+module.exports = { PedidoService, FINALIZAR_PEDIDO, RETIRAR_PEDIDO, STATUS }

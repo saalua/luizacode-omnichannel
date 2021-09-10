@@ -1,13 +1,14 @@
 const express = require('express');
 const router = express.Router()
 const { check, validationResult } = require('express-validator');
-const { restart } = require('nodemon');
 
-const { pedido, produtosPedido } = require('../models');
+const { pedido, produtosPedido, produto } = require('../models');
 const { PedidoService, FINALIZAR_PEDIDO } = require('../services/pedidos');
+const ProdutoService = require('../services/produtos');
 const { ProdutosPedidosService } = require('../services/produtosPedido');
 
 const pedidoService = new PedidoService(pedido);
+const produtoService = new ProdutoService(produto);
 const produtosPedidosService = new ProdutosPedidosService(produtosPedido);
 
   router.get('/:idPedido',
@@ -29,7 +30,7 @@ const produtosPedidosService = new ProdutosPedidosService(produtosPedido);
         } else {
             res.status(200).json(pedidoEncontrado)
         }
-    })
+    });
 
   router.get('/',
     check('idCliente')
@@ -96,24 +97,42 @@ router.post('/:idPedido/retirar',
                 res.status(400).json({ errors: [{ msg: 'Só é possível retirar pedidos que estejam realizados e ainda não foram retirados' }] })
                 break
         }
-    })
+    });
 
 
-    /* não pode remover se o produto ja estiver finalizado e retirado*/
-    router.delete('/:idPedido/remover/:idProduto', 
+    router.delete('/:idPedido/remover/:idProduto',
+        check('idPedido')
+        .not().isEmpty()
+        .matches(/\d/)
+        .withMessage('Para remover um item do pedido é necessário informar o id do pedido que é um número inteiro'),
+
+        check('idProduto')
+        .not().isEmpty()
+        .matches(/\d/)
+        .withMessage('Para remover um item do pedido é necessário informar o id do item que é um número inteiro'),
+
       async (req, res) => {
         
-        const erros = validationResult(req)
+        const erros = validationResult(req);
         if(!erros.isEmpty()) {
-          return res.status(400).json({erros: erros.array()})
+          return res.status(400).json({erros: erros.array()});
         }
 
         try {
-          const { pedido, produto } = req.params
-          const produtoRemovido = await produtosPedidosService.removerProduto(pedido, produto)
-          
-          res.status(200).json({"produto removido com sucesso": produtoRemovido})
+            const pedido = req.params.idPedido;
+            const produto = req = req.params.idProduto;
+
+            const pedidoEncontrado = await pedidoService.getById(pedido);
+            const produtoEncontrado = await produtoService.getProdutoById(produto);
+
+            if(pedidoEncontrado.status == 'ANDAMENTO') {
+                await produtosPedidosService.removerProduto(pedido, produto);
+                res.status(200).json({"Produto removido com sucesso": {"pedido": pedidoEncontrado, "produto": produtoEncontrado}});
+            } else {
+                res.status(400).json("Não é possível alterar o pedido quando o status se encontra como REALIZADA ou RETIRADO");
+            }
         } catch(erro) {
+<<<<<<< HEAD
           res.json({message: erro.message})
         }
       });
@@ -161,4 +180,11 @@ router.post('/:idPedido/retirar',
         // }
   
       });
+=======
+            res.json({message: erro.message});
+        }
+    });
+      
+
+>>>>>>> eda53a078eba6ea243f4f9c769b45f4e76f5e607
 module.exports = router
