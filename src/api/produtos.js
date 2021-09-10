@@ -1,10 +1,10 @@
 const express = require('express');
-const router = express.Router()
+const router = express.Router();
 
 const { produto } = require('../models');
-const ProdutoService = require('../services/produtos')
+const ProdutoService = require('../services/produtos');
 
-const produtoService = new ProdutoService(produto)
+const produtoService = new ProdutoService(produto);
 
 router.get('/', async (req, res) => {
   const produtos = await produtoService.get();
