@@ -7,6 +7,18 @@ class ProdutosPedidosService {
         const encontrados = await this.produtosPedido.findAll()
         return encontrados
     }
+
+
+    // async veririficaExistencia(idPedido, idProduto) {
+    //     console.log(idPedido, idProduto)
+    //     const produtoRemovido = await this.produtosPedido.findAll({
+    //         where: {
+    //             idPedido,
+    //             idProduto
+    //         }
+    //     })
+    //     return produtoRemovido
+    // }
  
     async removerProduto(idPedido, idProduto) {
         console.log(idPedido, idProduto)
@@ -15,8 +27,9 @@ class ProdutosPedidosService {
                 idPedido,
                 idProduto
             }
-        })
-        return produtoRemovido
+        });
+            
+        return produtoRemovido;
     }
 }
 

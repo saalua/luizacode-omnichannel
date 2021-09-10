@@ -18,4 +18,4 @@ class ProdutoService {
   }
 }
 
-module.exports = ProdutoService;
+module.exports = ProdutoService

@@ -29,7 +29,7 @@ const produtosPedidosService = new ProdutosPedidosService(produtosPedido);
         } else {
             res.status(200).json(pedidoEncontrado)
         }
-    })
+    });
 
   router.get('/',
     check('idCliente')
@@ -96,11 +96,20 @@ router.post('/:idPedido/retirar',
                 res.status(400).json({ errors: [{ msg: 'Só é possível retirar pedidos que estejam realizados e ainda não foram retirados' }] })
                 break
         }
-    })
+    });
 
 
-    /* não pode remover se o produto ja estiver finalizado e retirado*/
-    router.delete('/:idPedido/remover/:idProduto', 
+    router.delete('/:idPedido/remover/:idProduto',
+        check('idPedido')
+        .not().isEmpty()
+        .matches(/\d/)
+        .withMessage('Para remover um item do pedido é necessário informar o id do pedido que é um número inteiro'),
+
+        check('idProduto')
+        .not().isEmpty()
+        .matches(/\d/)
+        .withMessage('Para remover um item do pedido é necessário informar o id do item que é um número inteiro'),
+
       async (req, res) => {
         
         const erros = validationResult(req)
@@ -109,14 +118,21 @@ router.post('/:idPedido/retirar',
         }
 
         try {
-          const { pedido, produto } = req.params
-          const produtoRemovido = await produtosPedidosService.removerProduto(pedido, produto)
-          
-          res.status(200).json({"produto removido com sucesso": produtoRemovido})
+            const pedido = req.params.idPedido;
+            const produto = req = req.params.idProduto;
+
+            const pedidoEncontrado = await pedidoService.getById(pedido);
+
+            if(pedidoEncontrado.status == 'ANDAMENTO') {
+                await produtosPedidosService.removerProduto(pedido, produto);
+                res.status(200).json({"produto removido do pedido:": pedidoEncontrado});
+            } else {
+                res.status(400).json("Não é possível alterar o pedido quando o status se encontra como REALIZADA ou RETIRADO");
+            }
         } catch(erro) {
-          res.json({message: erro.message})
+            res.json({message: erro.message});
         }
-      });
+    });
 
 
     router.post('/', async (req, res) =>{
