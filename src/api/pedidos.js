@@ -162,9 +162,9 @@ router.post('/:idPedido/retirar',
 
 /*
     #swagger.tags = ['Pedidos']
-    #swagger.description = 'Endpoint para deletar um pedido.' 
+    #swagger.description = 'Endpoint para remover um pedido.' 
     #swagger.responses[200] = {
-    description: 'Pedido deletado.'
+    description: 'Pedido cancelado.'
     }
     #swagger.responses[404] = {
     description: 'Pedido não encontrado.'

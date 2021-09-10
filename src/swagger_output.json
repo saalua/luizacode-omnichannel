@@ -237,7 +237,7 @@
         "tags": [
           "Pedidos"
         ],
-        "description": "Endpoint para deletar um pedido.",
+        "description": "Endpoint para remover um pedido.",
         "parameters": [
           {
             "name": "idPedido",
@@ -254,7 +254,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Pedido deletado."
+            "description": "Pedido cancelado."
           },
           "400": {
             "description": "Houve algum erro na requisição."
