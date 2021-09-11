@@ -185,10 +185,10 @@
         ],
         "responses": {
           "200": {
-            "description": "Pedido finalizado."
+            "description": "OK"
           },
           "201": {
-            "description": "Created"
+            "description": "Produto adicionado com sucesso."
           },
           "400": {
             "description": "Houve algum erro na requisição."
@@ -218,7 +218,7 @@
             "description": "Pedido finalizado."
           },
           "400": {
-            "description": "Houve algum erro na requisição."
+            "description": "Só é possível finalizar pedidos que estejam em andamento."
           },
           "404": {
             "description": "Pedido não encontrado."
@@ -245,7 +245,7 @@
             "description": "Pedido pronto para ser retirado."
           },
           "400": {
-            "description": "Houve algum erro na requisição."
+            "description": "Só é possível retirar pedidos que estejam realizados e ainda não foram retirados."
           },
           "404": {
             "description": "Pedido não encontrado."
@@ -275,10 +275,10 @@
         ],
         "responses": {
           "200": {
-            "description": "Pedido cancelado."
+            "description": "Pedido cancelado com sucesso."
           },
           "400": {
-            "description": "Houve algum erro na requisição."
+            "description": "Não é possível alterar o pedido quando o status se encontra como REALIZADA ou RETIRADO."
           },
           "404": {
             "description": "Pedido não encontrado."
@@ -302,7 +302,7 @@
                 "nome": {
                   "example": "any"
                 },
-                "endereco": {
+                "logradouro": {
                   "example": "any"
                 },
                 "bairro": {
@@ -313,23 +313,26 @@
                 },
                 "cep": {
                   "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "senha": {
+                  "example": "any"
                 }
               }
             }
           }
         ],
         "responses": {
-          "200": {
+          "201": {
+            "description": "Cliente cadastrado com sucesso.",
             "schema": {
               "$ref": "#/definitions/Clientes"
-            },
-            "description": "Cadastro realizado."
-          },
-          "201": {
-            "description": "Created"
+            }
           },
           "400": {
-            "description": "Houve algum erro na requisição."
+            "description": "Não foi possivel cadastrar o cliente."
           }
         }
       }
@@ -347,7 +350,7 @@
           "type": "string",
           "example": "Magalu SP"
         },
-        "endereco": {
+        "logradouro": {
           "type": "string",
           "example": "Bairro Lago das Rosas, quadra 70, rua 92."
         },
@@ -417,7 +420,7 @@
           "type": "string",
           "example": "Ana"
         },
-        "endereco": {
+        "logradouro": {
           "type": "string",
           "example": "São Paulo, rua Augusta, n° 835."
         },
@@ -432,6 +435,14 @@
         "cep": {
           "type": "string",
           "example": "12345678"
+        },
+        "email": {
+          "type": "string",
+          "example": "ana@gmail.com"
+        },
+        "senha": {
+          "type": "string",
+          "example": "senha123"
         }
       }
     }

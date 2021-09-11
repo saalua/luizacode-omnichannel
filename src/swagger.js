@@ -36,7 +36,7 @@ const doc = {
         Lojas: {
             id: 1,
             filial: "Magalu SP",
-            endereco: "Bairro Lago das Rosas, quadra 70, rua 92.",
+            logradouro: "Bairro Lago das Rosas, quadra 70, rua 92.",
             bairro: "Lago das Rosas",
             cidade: "São Paulo",
             cep: "12345678",
@@ -55,10 +55,12 @@ const doc = {
         },
         Clientes: {
             nome: "Ana",
-            endereco: "São Paulo, rua Augusta, n° 835.",
+            logradouro: "São Paulo, rua Augusta, n° 835.",
             bairro: "Jardim da Liberdade",
             cidade: "São Paulo",
-            cep: "12345678"
+            cep: "12345678",
+            email: "ana@gmail.com",
+            senha: "senha123"
         }
     }
 }

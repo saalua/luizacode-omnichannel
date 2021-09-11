@@ -19,7 +19,7 @@ const produtosPedidosService = new ProdutosPedidosService(produtosPedido);
     check('idPedido')
         .not().isEmpty()
         .matches(/\d/)
-        .withMessage('Para consultar um pedido é necessário informar o seu id, que precisa ser um valor numérico'),
+        .withMessage('Para consultar um pedido é necessário informar o seu id, que precisa ser um valor numérico.'),
     async (req, res) => {
 
 /*
@@ -54,7 +54,7 @@ const produtosPedidosService = new ProdutosPedidosService(produtosPedido);
     check('idCliente')
         .not().isEmpty()
         .matches(/\d/)
-        .withMessage('Para consultar os pedidos é obrigatório informar o parâmetro idCliente que precisa ser um valor numérico'),
+        .withMessage('Para consultar os pedidos é obrigatório informar o parâmetro idCliente que precisa ser um valor numérico.'),
     async (req, res) => {
 
 /*
@@ -84,7 +84,7 @@ const produtosPedidosService = new ProdutosPedidosService(produtosPedido);
     check('idPedido')
         .not().isEmpty()
         .matches(/\d/)
-        .withMessage('Para finalizar um pedido é obrigatório informar o seu id, que precisa ser um valor numérico'),
+        .withMessage('Para finalizar um pedido é obrigatório informar o seu id, que precisa ser um valor numérico.'),
     async (req, res) => {
 
 /*
@@ -97,7 +97,7 @@ const produtosPedidosService = new ProdutosPedidosService(produtosPedido);
     description: 'Pedido não encontrado.'
     }
     #swagger.responses[400] = {
-    description: 'Houve algum erro na requisição.'
+    description: 'Só é possível finalizar pedidos que estejam em andamento.'
     }
 */
 
@@ -115,7 +115,7 @@ const produtosPedidosService = new ProdutosPedidosService(produtosPedido);
                 res.status(404).send()
                 break
             case FINALIZAR_PEDIDO.STATUS_PEDIDO_IMPEDE_FINALIZAR:
-                res.status(400).json({ errors: [{ msg: 'Só é possível finalizar pedidos que estejam em andamento' }] })
+                res.status(400).json({ errors: [{ msg: 'Só é possível finalizar pedidos que estejam em andamento.' }] })
                 break
         }
     })
@@ -124,7 +124,7 @@ router.post('/:idPedido/retirar',
     check('idPedido')
         .not().isEmpty()
         .matches(/\d/)
-        .withMessage('Para retirar um pedido é obrigatório informar o seu id, que precisa ser um valor numérico'),
+        .withMessage('Para retirar um pedido é obrigatório informar o seu id, que precisa ser um valor numérico.'),
     async (req, res) => {
 
 /*
@@ -137,7 +137,7 @@ router.post('/:idPedido/retirar',
     description: 'Pedido não encontrado.'
     }
     #swagger.responses[400] = {
-    description: 'Houve algum erro na requisição.'
+    description: 'Só é possível retirar pedidos que estejam realizados e ainda não foram retirados.'
     }
 */
 
@@ -156,7 +156,7 @@ router.post('/:idPedido/retirar',
                 res.status(404).send()
                 break
             case RETIRAR_PEDIDO.STATUS_PEDIDO_IMPEDE_RETIRAR:
-                res.status(400).json({ errors: [{ msg: 'Só é possível retirar pedidos que estejam realizados e ainda não foram retirados' }] })
+                res.status(400).json({ errors: [{ msg: 'Só é possível retirar pedidos que estejam realizados e ainda não foram retirados.' }] })
                 break
         }
     });
@@ -165,12 +165,12 @@ router.post('/:idPedido/retirar',
         check('idPedido')
         .not().isEmpty()
         .matches(/\d/)
-        .withMessage('Para remover um item do pedido é necessário informar o id do pedido que é um número inteiro'),
+        .withMessage('Para remover um item do pedido é necessário informar o id do pedido que é um número inteiro.'),
 
         check('idProduto')
         .not().isEmpty()
         .matches(/\d/)
-        .withMessage('Para remover um item do pedido é necessário informar o id do item que é um número inteiro'),
+        .withMessage('Para remover um item do pedido é necessário informar o id do item que é um número inteiro.'),
 
       async (req, res) => {
 
@@ -178,13 +178,13 @@ router.post('/:idPedido/retirar',
     #swagger.tags = ['Pedidos']
     #swagger.description = 'Endpoint para remover um pedido.' 
     #swagger.responses[200] = {
-    description: 'Pedido cancelado.'
+    description: 'Pedido cancelado com sucesso.'
     }
     #swagger.responses[404] = {
     description: 'Pedido não encontrado.'
     }
     #swagger.responses[400] = {
-    description: 'Houve algum erro na requisição.'
+    description: 'Não é possível alterar o pedido quando o status se encontra como REALIZADA ou RETIRADO.'
     }
 */
 
@@ -204,7 +204,7 @@ const erros = validationResult(req);
                 await produtosPedidosService.removerProduto(pedido, produto);
                 res.status(200).json({"Produto removido com sucesso": {"pedido": pedidoEncontrado, "produto": produtoEncontrado}});
             } else {
-                res.status(400).json("Não é possível alterar o pedido quando o status se encontra como REALIZADA ou RETIRADO");
+                res.status(400).json("Não é possível alterar o pedido quando o status se encontra como REALIZADA ou RETIRADO.");
             }
         } catch(erro) {
             res.json({message: erro.message});
@@ -214,21 +214,21 @@ const erros = validationResult(req);
     router.post('/',
         check('idPedido')
             .not().isEmpty()
-            .withMessage('idPedido do pedido obrigatório')
+            .withMessage('idPedido do pedido obrigatório.')
             .matches(/\d/)
-            .withMessage('idPedido não é um número'),            
+            .withMessage('idPedido não é um número.'),            
         check('produtos')
             .isArray()
-            .withMessage('Campo "produtos" deve ser uma lista')
+            .withMessage('Campo "produtos" deve ser uma lista.')
             .isLength({ min: 1 })
-            .withMessage('Campo "produtos" deve ter no minímo 1 item'),            
+            .withMessage('Campo "produtos" deve ter no minímo 1 item.'),            
         async (req, res) =>{
 
 /*
     #swagger.tags = ['Pedidos']
     #swagger.description = 'Endpoint para se realizar um pedido.' 
-    #swagger.responses[200] = {
-    description: 'Pedido finalizado.'
+    #swagger.responses[201] = {
+    description: 'Produto adicionado com sucesso.'
     }
     #swagger.responses[404] = {
     description: 'Pedido não encontrado.'
@@ -252,7 +252,7 @@ const erros = validationResult(req);
                     const produto = await produtoService.getProdutoById(idProduto); 
                     pedido.addProduto(produto);
                 };    
-                res.status(201).send('Produto adicionado com sucesso!')
+                res.status(201).send('Produto adicionado com sucesso.')
             } catch (e) {
                 res.status(400).send(e.message);
             }        
