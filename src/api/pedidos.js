@@ -164,7 +164,6 @@ router.post('/:idPedido/retirar',
         .matches(/\d/)
         .withMessage('Para remover um item do pedido é necessário informar o id do pedido que é um número inteiro'),
 
-    /* não pode remover se o produto ja estiver finalizado e retirado*/
     router.delete('/:idPedido/remover/:idProduto', 
       async (req, res) => {
 
