@@ -161,7 +161,6 @@ router.post('/:idPedido/retirar',
         }
     });
 
-
     router.delete('/:idPedido/remover/:idProduto',
         check('idPedido')
         .not().isEmpty()
