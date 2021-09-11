@@ -4,15 +4,13 @@ const router = express.Router()
 const { check, validationResult } = require('express-validator');
 
 const { pedido, produtosPedido, produto } = require('../models');
-const { PedidoService, FINALIZAR_PEDIDO } = require('../services/pedidos');
+const { PedidoService, finalizarPedido, retirarPedido } = require('../services/pedidos');
 const ProdutoService = require('../services/produtos');
-const { ProdutosPedidosService } = require('../services/produtosPedido');
+const { ProdutosPedidosService, removerProduto } = require('../services/produtosPedido');
 
 const pedidoService = new PedidoService(pedido);
 const produtoService = new ProdutoService(produto);
 const produtosPedidosService = new ProdutosPedidosService(produtosPedido);
-
-//Teste commit
 
 
   router.get('/:idPedido',
@@ -65,13 +63,13 @@ const produtosPedidosService = new ProdutosPedidosService(produtosPedido);
         const { idPedido } = req.params
         const resultado = await pedidoService.finalizarPedido(idPedido)
         switch (resultado) {
-            case FINALIZAR_PEDIDO.FINALIZADO:
+            case finalizarPedido.finalizado:
                 res.status(200).send()
                 break
-            case FINALIZAR_PEDIDO.PEDIDO_NAO_ENCONTRADO:
+            case finalizarPedido.pedidoNaoEncontrado:
                 res.status(404).send()
                 break
-            case FINALIZAR_PEDIDO.STATUS_PEDIDO_IMPEDE_FINALIZAR:
+            case finalizarPedido.statusPedidoImpedeFinalizar:
                 res.status(400).json({ errors: [{ msg: 'Só é possível finalizar pedidos que estejam em andamento' }] })
                 break
         }
@@ -91,18 +89,17 @@ router.post('/:idPedido/retirar',
         const { idPedido } = req.params
         const resultado = await pedidoService.retirarPedido(idPedido)
         switch (resultado) {
-            case RETIRAR_PEDIDO.RETIRADO:
+            case retirarPedido.retirado:
                 res.status(200).send()
                 break
-            case RETIRAR_PEDIDO.PEDIDO_NAO_ENCONTRADO:
+            case retirarPedido.pedidoNaoEncontrado:
                 res.status(404).send()
                 break
-            case RETIRAR_PEDIDO.STATUS_PEDIDO_IMPEDE_RETIRAR:
+            case retirarPedido.statusPedidoImpedeRetirar:
                 res.status(400).json({ errors: [{ msg: 'Só é possível retirar pedidos que estejam realizados e ainda não foram retirados' }] })
                 break
         }
     });
-
 
     router.delete('/:idPedido/remover/:idProduto',
         check('idPedido')
@@ -123,20 +120,22 @@ router.post('/:idPedido/retirar',
         }
 
         try {
-            const pedido = req.params.idPedido;
-            const produto = req = req.params.idProduto;
-
-            const pedidoEncontrado = await pedidoService.getById(pedido);
-            const produtoEncontrado = await produtoService.getProdutoById(produto);
-
-            if(pedidoEncontrado.status == 'ANDAMENTO') {
-                await produtosPedidosService.removerProduto(pedido, produto);
-                res.status(200).json({"Produto removido com sucesso": {"pedido": pedidoEncontrado, "produto": produtoEncontrado}});
-            } else {
-                res.status(400).json("Não é possível alterar o pedido quando o status se encontra como REALIZADA ou RETIRADO");
+            const { idPedido, idProduto } = req.params;
+            const resposta = await produtosPedidosService.removerProduto(idPedido, idProduto)
+            switch(resposta) {
+                case removerProduto.pedidoProdutoNaoEncontrado:
+                    res.status(404).send();
+                    break;
+                case removerProduto.statusNaoPermiteRemoverProduto:
+                    res.status(400).json("Não é possível alterar o pedido quando o status se encontra como REALIZADA ou RETIRADO");
+                    break;
+                case removerProduto.produtoRemovido:
+                    res.status(200).json("Produto removido com sucesso");
+                    break;
             }
+
         } catch(erro) {
-            res.json({message: erro.message});
+            res.status(500).json({message: erro.message});
         }
     });
 

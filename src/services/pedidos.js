@@ -1,16 +1,16 @@
-const FINALIZAR_PEDIDO = {
-    PEDIDO_NAO_ENCONTRADO: 'PEDIDO_NAO_ENCONTRADO',
-    STATUS_PEDIDO_IMPEDE_FINALIZAR: 'STATUS_PEDIDO_IMPEDE_FINALIZAR',
-    FINALIZADO: 'FINALIZADO'
+const finalizarPedido = {
+    pedidoNaoEncontrado: 'PEDIDO_NAO_ENCONTRADO',
+    statusPedidoImpedeFinalizar: 'STATUS_PEDIDO_IMPEDE_FINALIZAR',
+    finalizado: 'FINALIZADO'
 }
 
-const RETIRAR_PEDIDO = {
-    PEDIDO_NAO_ENCONTRADO: 'PEDIDO_NAO_ENCONTRADO',
-    STATUS_PEDIDO_IMPEDE_RETIRAR: 'STATUS_PEDIDO_IMPEDE_RETIRAR',
-    RETIRADO: 'RETIRADO'
+const retirarPedido = {
+    pedidoNaoEncontrado: 'PEDIDO_NAO_ENCONTRADO',
+    statusPedidoImpedeRetirar: 'STATUS_PEDIDO_IMPEDE_RETIRAR',
+    retirado: 'RETIRADO'
 }
 
-const STATUS = {
+const statusPedido = {
     ANDAMENTO: 'ANDAMENTO',
     REALIZADO: 'REALIZADA',
     RETIRADO: 'RETIRADO'
@@ -38,26 +38,26 @@ class PedidoService {
     async retirarPedido(idPedido) {
         const pedidoEncontrado = await this.pedido.findByPk(idPedido)
         
-        if (pedidoEncontrado == null) return RETIRAR_PEDIDO.PEDIDO_NAO_ENCONTRADO
+        if (pedidoEncontrado == null) return retirarPedido.pedidoNaoEncontrado
 
-        if (pedidoEncontrado.status !== STATUS.REALIZADO) return RETIRAR_PEDIDO.STATUS_PEDIDO_IMPEDE_RETIRAR
+        if (pedidoEncontrado.status !== statusPedido.REALIZADO) return retirarPedido.statusPedidoImpedeRetirar
 
-        pedidoEncontrado.status = STATUS.RETIRADO
+        pedidoEncontrado.status = statusPedido.RETIRADO
         await pedidoEncontrado.save()
-        return RETIRAR_PEDIDO.RETIRADO
+        return retirarPedido.retirado
     }
 
     async finalizarPedido(idPedido) {
         const pedidoEncontrado = await this.pedido.findByPk(idPedido);
         
-        if (pedidoEncontrado == null) return FINALIZAR_PEDIDO.PEDIDO_NAO_ENCONTRADO;
+        if (pedidoEncontrado == null) return finalizarPedido.pedidoNaoEncontrado;
 
-        if (pedidoEncontrado.status !== STATUS.ANDAMENTO) return FINALIZAR_PEDIDO.STATUS_PEDIDO_IMPEDE_FINALIZAR
+        if (pedidoEncontrado.status !== statusPedido.ANDAMENTO) return finalizarPedido.statusPedidoImpedeFinalizar
 
-        pedidoEncontrado.status = STATUS.REALIZADO
+        pedidoEncontrado.status = statusPedido.REALIZADO
         await pedidoEncontrado.save()
-        return FINALIZAR_PEDIDO.FINALIZADO
+        return finalizarPedido.finalizado
     }
 }
 
-module.exports = { PedidoService, FINALIZAR_PEDIDO, RETIRAR_PEDIDO, STATUS }
+module.exports = { PedidoService, finalizarPedido, retirarPedido, statusPedido }
