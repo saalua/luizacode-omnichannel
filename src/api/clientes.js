@@ -3,6 +3,19 @@ const router = express.Router();
 const { cliente } = require('../models');
 
 router.post('/', async (req, res) =>{
+
+/*
+    #swagger.tags = ['Clientes']
+    #swagger.description = 'Endpoint para o cadastro do cliente.' 
+    #swagger.responses[200] = {
+    schema: { $ref: "#/definitions/Clientes"},
+    description: 'Cadastro realizado.'
+    }
+    #swagger.responses[400] = {
+    description: 'Houve algum erro na requisição.'
+    }
+*/
+
   const {nome, endereco, bairro, cidade, cep} = req.body
   try{
     await cliente.create({nome, endereco, bairro, cidade, cep})
