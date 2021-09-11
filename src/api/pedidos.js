@@ -1,3 +1,4 @@
+const { request, response } = require('express');
 const express = require('express');
 const router = express.Router()
 const { check, validationResult } = require('express-validator');
@@ -10,6 +11,9 @@ const { ProdutosPedidosService } = require('../services/produtosPedido');
 const pedidoService = new PedidoService(pedido);
 const produtoService = new ProdutoService(produto);
 const produtosPedidosService = new ProdutosPedidosService(produtosPedido);
+
+//Teste commit
+
 
   router.get('/:idPedido',
     check('idPedido')
@@ -135,6 +139,39 @@ router.post('/:idPedido/retirar',
             res.json({message: erro.message});
         }
     });
-      
+
+    router.post('/',
+        check('idPedido')
+            .not().isEmpty()
+            .withMessage('idPedido do pedido obrigatório')
+            .matches(/\d/)
+            .withMessage('idPedido não é um número'),            
+        check('produtos')
+            .isArray()
+            .withMessage('Campo "produtos" deve ser uma lista')
+            .isLength({ min: 1 })
+            .withMessage('Campo "produtos" deve ter no minímo 1 item'),            
+        async (req, res) =>{
+
+            const errors = validationResult(req)
+            if (!errors.isEmpty()) {
+                return res.status(400).json({ errors: errors.array() })
+            }    
+        
+            try {
+                const { idPedido, produtos} = req.body
+                const pedido = await pedidoService.getById(idPedido);
+    
+                for(let i = 0; i < produtos.length; i++) {
+                    idProduto = produtos[i];
+                    const produto = await produtoService.getProdutoById(idProduto); 
+                    pedido.addProduto(produto);
+                };    
+                res.status(201).send('Produto adicionado com sucesso!')
+            } catch (e) {
+                res.status(400).send(e.message);
+            }        
+    })
 
 module.exports = router
+

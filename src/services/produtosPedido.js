@@ -14,6 +14,15 @@ class ProdutosPedidosService {
             
         return produtoRemovido;
     }
+
+    async adicionar(idPedido, idProduto){
+        const produtoAdicionado = await this.produtosPedido.create({
+            idProduto: idProduto,
+            idPedido: idPedido
+        });
+        return produtoAdicionado;
+    }
+
 }
 
-module.exports = { ProdutosPedidosService }
+module.exports = {ProdutosPedidosService} 

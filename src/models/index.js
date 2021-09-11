@@ -33,7 +33,7 @@ pedido.belongsTo(loja, {
 });
 
 produto.belongsToMany(pedido, { through: 'ProdutosPedidos' });
-// produto.hasMany(pedido);
+pedido.belongsToMany(produto, { through: 'ProdutosPedidos' });
 
 const db = {
   loja,
