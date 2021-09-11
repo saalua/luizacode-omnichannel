@@ -160,6 +160,43 @@
             "description": "Pedidos não encontrados."
           }
         }
+      },
+      "post": {
+        "tags": [
+          "Pedidos"
+        ],
+        "description": "Endpoint para se realizar um pedido.",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "idPedido": {
+                  "example": "any"
+                },
+                "produtos": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pedido finalizado."
+          },
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Houve algum erro na requisição."
+          },
+          "404": {
+            "description": "Pedido não encontrado."
+          }
+        }
       }
     },
     "/pedidos/{idPedido}/finalizar": {
@@ -238,10 +275,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Pedido finalizado."
-          },
-          "201": {
-            "description": "Created"
+            "description": "Pedido cancelado."
           },
           "400": {
             "description": "Houve algum erro na requisição."
