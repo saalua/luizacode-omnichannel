@@ -45,13 +45,10 @@
         "parameters": [],
         "responses": {
           "200": {
+            "description": "Lista de lojas encontrada.",
             "schema": {
               "$ref": "#/definitions/Lojas"
-            },
-            "description": "Lista de lojas encontrada."
-          },
-          "201": {
-            "description": "Created"
+            }
           },
           "400": {
             "description": "Houve algum erro na requisição."
