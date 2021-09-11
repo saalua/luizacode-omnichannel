@@ -70,7 +70,7 @@ Endpoints
 Com o servidor rodando, digite ``` localhost:3000/docs``` no navegador (utilize a porta que estiver rodando a aplicação)
 
 
-## :beetle: Testes automatizados
+## :bug: Testes automatizados
 Os testes da API foram desenvolvidos utilizando o framework Cypress. E podem ser encontrados no repositório abaixo: 
 
 <a href="https://github.com/saalua/luizacode-omnichannel-cypress"> Repositório Cypress </a>
