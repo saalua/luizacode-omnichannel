@@ -1,9 +1,4 @@
-require('dotenv').config();
-
-const jwt = require('jsonwebtoken');
 const getTokenData = require('./functions');
-
-const JWTSecret = process.env.JWTSecret;
 
 module.exports = (req, res, next) => {
   const authToken = req.headers['authorization'];
