@@ -1,4 +1,4 @@
-<h1 align="center"> Luiza &lt;Code> - Omni Channel </h1>
+<h1 align="center"> Luiza &lt;Code> - Omni Channel.</h1>
 
 <p align="center">
   <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" />
@@ -16,23 +16,33 @@
 
 ## 💻 Preview
 
-## 💻 Pré-requisitos
+## :heavy_check_mark: Pré-requisitos
 
 Antes de começar, verifique se você atendeu aos seguintes requisitos:
-<!---Estes são apenas requisitos de exemplo. Adicionar, duplicar ou remover conforme necessário--->
-* Você instalou a versão mais recente de `<linguagem / dependência / requeridos>`
-* Você tem uma máquina `<Windows / Linux / Mac>`. Indique qual sistema operacional é compatível / não compatível.
-* Você leu `<guia / link / documentação_relacionada_ao_projeto>`.
+* Você tem uma máquina `Windows, Linux ou Mac`.
+* Você instalou a versão mais recente do `npm, node e postgres`
 
-## 🚀 Instalando o Omnichannel
+## 🚀 Instalação
 
 Para a instalação, siga estas etapas:
 
+1) Crie um arquivo chamado ```.env``` na raiz do projeto com as variáveis abaixo e o preenche com as informações de autenticação do seu banco de dados, como no exemplo: 
 ```
-<comando_de_instalação>
+DB=postgres
+USER=postgres
+PASS=senha
+HOST=localhost
+PGPORT=5432
+
 ```
 
-## ☕ Usando o Omnichannel
+2) Na pasta do projeto, abra o terminal e execute o comando abaixo para instalar as dependências:
+
+```
+npm install
+```
+
+## ☕ Usando o Omni Channel
 
 Para usar, siga estas etapas:
 
@@ -90,6 +100,20 @@ Para usar, siga estas etapas:
         <img src="https://github.com/Walquirialima.png" width="100px;" alt="Foto de Walquiria Lima"/><br>
         <sub>
           <b>Walquiria Lima</b>
+        </sub>
+      </a>
+    </td>
+  </tr>
+</table>
+
+## :purple_heart: Mentora
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/tainajmedeiros">
+        <img src="https://github.com/tainajmedeiros.png" width="100px;" alt="Foto de Tainá Medeiros"/><br>
+        <sub>
+          <b>Tainá Medeiros</b>
         </sub>
       </a>
     </td>
