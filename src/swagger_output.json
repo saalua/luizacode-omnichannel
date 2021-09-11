@@ -1,0 +1,450 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Luiza<Code> - Omni Channel",
+    "description": "API NodeJS que desempenha a funcionalidade de Omni Channel do cliente. Projeto proposto no encerramento da aceleração Luiza Code, turma NodeJS."
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Lojas",
+      "description": "Endpoints relacionados às lojas."
+    },
+    {
+      "name": "Produtos",
+      "description": "Endpoints relacionados aos recursos de produto."
+    },
+    {
+      "name": "Clientes",
+      "description": "Endpoints relacionados ao usuário."
+    },
+    {
+      "name": "Pedidos",
+      "description": "Endpoints relacionados aos pedidos do cliente."
+    }
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/lojas/": {
+      "get": {
+        "tags": [
+          "Lojas"
+        ],
+        "description": "Endpoint para se obter a lista das lojas.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Lista de lojas encontrada.",
+            "schema": {
+              "$ref": "#/definitions/Lojas"
+            }
+          },
+          "400": {
+            "description": "Houve algum erro na requisição."
+          },
+          "404": {
+            "description": "Lista de lojas não encontrada."
+          }
+        }
+      }
+    },
+    "/produtos/": {
+      "get": {
+        "tags": [
+          "Produtos"
+        ],
+        "description": "Endpoint para se obter uma lista de produtos.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Lista de produtos encontrada.",
+            "schema": {
+              "$ref": "#/definitions/Produtos"
+            }
+          },
+          "400": {
+            "description": "Houve algum erro na requisição."
+          },
+          "404": {
+            "description": "Lista de produtos não encontrada."
+          }
+        }
+      }
+    },
+    "/produtos/{id}": {
+      "get": {
+        "tags": [
+          "Produtos"
+        ],
+        "description": "Endpoint para acessar um produto pelo seu ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Produto encontrado."
+          },
+          "400": {
+            "description": "Houve algum erro na requisição."
+          },
+          "404": {
+            "description": "Produto não encontrado."
+          }
+        }
+      }
+    },
+    "/pedidos/{idPedido}": {
+      "get": {
+        "tags": [
+          "Pedidos"
+        ],
+        "description": "Endpoint para a consulta de pedidos do cliente por ID.",
+        "parameters": [
+          {
+            "name": "idPedido",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Consulta realizada com sucesso."
+          },
+          "400": {
+            "description": "Houve algum erro na requisição."
+          },
+          "404": {
+            "description": "Pedido não encontrado."
+          }
+        }
+      }
+    },
+    "/pedidos/": {
+      "get": {
+        "tags": [
+          "Pedidos"
+        ],
+        "description": "Endpoint para a consulta de todos os pedidos do cliente.",
+        "parameters": [
+          {
+            "name": "idCliente",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Consulta realizada com sucesso."
+          },
+          "400": {
+            "description": "Houve algum erro na requisição."
+          },
+          "404": {
+            "description": "Pedidos não encontrados."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Pedidos"
+        ],
+        "description": "Endpoint para se realizar um pedido.",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "idPedido": {
+                  "example": "any"
+                },
+                "produtos": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "201": {
+            "description": "Produto adicionado com sucesso."
+          },
+          "400": {
+            "description": "Houve algum erro na requisição."
+          },
+          "404": {
+            "description": "Pedido não encontrado."
+          }
+        }
+      }
+    },
+    "/pedidos/{idPedido}/finalizar": {
+      "post": {
+        "tags": [
+          "Pedidos"
+        ],
+        "description": "Endpoint para finalizar o pedido do cliente.",
+        "parameters": [
+          {
+            "name": "idPedido",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pedido finalizado."
+          },
+          "400": {
+            "description": "Só é possível finalizar pedidos que estejam em andamento."
+          },
+          "404": {
+            "description": "Pedido não encontrado."
+          }
+        }
+      }
+    },
+    "/pedidos/{idPedido}/retirar": {
+      "post": {
+        "tags": [
+          "Pedidos"
+        ],
+        "description": "Endpoint para retirar o pedido do cliente.",
+        "parameters": [
+          {
+            "name": "idPedido",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pedido pronto para ser retirado."
+          },
+          "400": {
+            "description": "Só é possível retirar pedidos que estejam realizados e ainda não foram retirados."
+          },
+          "404": {
+            "description": "Pedido não encontrado."
+          }
+        }
+      }
+    },
+    "/pedidos/{idPedido}/remover/{idProduto}": {
+      "delete": {
+        "tags": [
+          "Pedidos"
+        ],
+        "description": "Endpoint para remover um pedido.",
+        "parameters": [
+          {
+            "name": "idPedido",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "idProduto",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pedido cancelado com sucesso."
+          },
+          "400": {
+            "description": "Não é possível alterar o pedido quando o status se encontra como REALIZADA ou RETIRADO."
+          },
+          "404": {
+            "description": "Pedido não encontrado."
+          }
+        }
+      }
+    },
+    "/clientes/": {
+      "post": {
+        "tags": [
+          "Clientes"
+        ],
+        "description": "Endpoint para o cadastro do cliente.",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "example": "any"
+                },
+                "logradouro": {
+                  "example": "any"
+                },
+                "bairro": {
+                  "example": "any"
+                },
+                "cidade": {
+                  "example": "any"
+                },
+                "cep": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "senha": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Cliente cadastrado com sucesso.",
+            "schema": {
+              "$ref": "#/definitions/Clientes"
+            }
+          },
+          "400": {
+            "description": "Não foi possivel cadastrar o cliente."
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Lojas": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "example": 1
+        },
+        "filial": {
+          "type": "string",
+          "example": "Magalu SP"
+        },
+        "logradouro": {
+          "type": "string",
+          "example": "Bairro Lago das Rosas, quadra 70, rua 92."
+        },
+        "bairro": {
+          "type": "string",
+          "example": "Lago das Rosas"
+        },
+        "cidade": {
+          "type": "string",
+          "example": "São Paulo"
+        },
+        "cep": {
+          "type": "string",
+          "example": "12345678"
+        },
+        "updated_at": {
+          "type": "string",
+          "example": "2021-12-12 03:03:00"
+        },
+        "created_at": {
+          "type": "string",
+          "example": "2021-12-12 03:03:00"
+        }
+      }
+    },
+    "Produtos": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "example": 1
+        },
+        "produto": {
+          "type": "string",
+          "example": "Notebook"
+        },
+        "categoria": {
+          "type": "string",
+          "example": "Informática"
+        },
+        "valor": {
+          "type": "number",
+          "example": 2500
+        },
+        "descricao": {
+          "type": "string",
+          "example": "Notebook com memória de 4GB, SSD de 128GB, processamento em 64bits, branco."
+        },
+        "marca": {
+          "type": "string",
+          "example": "Dell"
+        },
+        "updated_at": {
+          "type": "string",
+          "example": "2021-12-12 03:03:00"
+        },
+        "created_at": {
+          "type": "string",
+          "example": "2021-12-12 03:03:00"
+        }
+      }
+    },
+    "Clientes": {
+      "type": "object",
+      "properties": {
+        "nome": {
+          "type": "string",
+          "example": "Ana"
+        },
+        "logradouro": {
+          "type": "string",
+          "example": "São Paulo, rua Augusta, n° 835."
+        },
+        "bairro": {
+          "type": "string",
+          "example": "Jardim da Liberdade"
+        },
+        "cidade": {
+          "type": "string",
+          "example": "São Paulo"
+        },
+        "cep": {
+          "type": "string",
+          "example": "12345678"
+        },
+        "email": {
+          "type": "string",
+          "example": "ana@gmail.com"
+        },
+        "senha": {
+          "type": "string",
+          "example": "senha123"
+        }
+      }
+    }
+  }
+}

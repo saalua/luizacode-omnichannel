@@ -7,25 +7,10 @@ module.exports = (sequelize, DataTypes) => {
                 primaryKey: true,
                 autoIncrement: true,
             },
-            idLoja: {
-                type: DataTypes.INTEGER,
-                allowNull: false,
-            },
-            idCliente: {
-                type: DataTypes.INTEGER,
-                allowNull: false,
-            },
-            total: {
-                type: DataTypes.FLOAT,
-                allowNull: false,
-            },
             status: {
                 type: DataTypes.STRING,
                 allowNull: false,
             },
-        },
-        {
-            timestamps: false,
         }
     );
 
