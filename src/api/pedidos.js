@@ -1,3 +1,4 @@
+const { request, response } = require('express');
 const express = require('express');
 const router = express.Router()
 const { check, validationResult } = require('express-validator');
@@ -10,6 +11,9 @@ const { ProdutosPedidosService } = require('../services/produtosPedido');
 const pedidoService = new PedidoService(pedido);
 const produtoService = new ProdutoService(produto);
 const produtosPedidosService = new ProdutosPedidosService(produtosPedido);
+
+//Teste commit
+
 
   router.get('/:idPedido',
     check('idPedido')
@@ -164,8 +168,11 @@ router.post('/:idPedido/retirar',
         .matches(/\d/)
         .withMessage('Para remover um item do pedido é necessário informar o id do pedido que é um número inteiro'),
 
-    /* não pode remover se o produto ja estiver finalizado e retirado*/
-    router.delete('/:idPedido/remover/:idProduto', 
+        check('idProduto')
+        .not().isEmpty()
+        .matches(/\d/)
+        .withMessage('Para remover um item do pedido é necessário informar o id do item que é um número inteiro'),
+
       async (req, res) => {
 
 /*
@@ -182,15 +189,7 @@ router.post('/:idPedido/retirar',
     }
 */
 
-        const erros = validationResult(req)
-        check('idProduto')
-        .not().isEmpty()
-        .matches(/\d/)
-        .withMessage('Para remover um item do pedido é necessário informar o id do item que é um número inteiro'),
-
-      async (req, res) => {
-        
-        const erros = validationResult(req);
+const erros = validationResult(req);
         if(!erros.isEmpty()) {
           return res.status(400).json({erros: erros.array()});
         }
@@ -209,12 +208,22 @@ router.post('/:idPedido/retirar',
                 res.status(400).json("Não é possível alterar o pedido quando o status se encontra como REALIZADA ou RETIRADO");
             }
         } catch(erro) {
-          res.json({message: erro.message})
+            res.json({message: erro.message});
         }
-      };
+    });
 
-
-    router.post('/', async (req, res) =>{
+    router.post('/',
+        check('idPedido')
+            .not().isEmpty()
+            .withMessage('idPedido do pedido obrigatório')
+            .matches(/\d/)
+            .withMessage('idPedido não é um número'),            
+        check('produtos')
+            .isArray()
+            .withMessage('Campo "produtos" deve ser uma lista')
+            .isLength({ min: 1 })
+            .withMessage('Campo "produtos" deve ter no minímo 1 item'),            
+        async (req, res) =>{
 
 /*
     #swagger.tags = ['Pedidos']
@@ -230,32 +239,25 @@ router.post('/:idPedido/retirar',
     }
 */
 
-        const {idCliente, idProdutos, id_loja} = req.body;
-
-        /** o request body vai ser um array com vários id de produto, 
-         * 
-         * cadastrar: tem que percorrer o array dando create na tabela de produtospedidos passando o id do pedido e id do produto
-         * Regra: verificar se os produtos tem o mesmo id 
-         */
-        try{
-          await pedido.create({
-              idCliente, 
-              idLoja: id_loja,
-              idProdutos,
-              status: "REALIZADA",
-              total: 0
-            })
-          res.status(201).send('Cliente cadastrado com sucesso')
-        } catch(erro){
-            console.log(erro);
-          res.status(400).send('Não foi possivel cadastrar o cliente')
-        }
-      });
-
-      //adicionar o id pedido no array
-            res.json({message: erro.message});
-        }
-    ));
-      
+            const errors = validationResult(req)
+            if (!errors.isEmpty()) {
+                return res.status(400).json({ errors: errors.array() })
+            }    
+        
+            try {
+                const { idPedido, produtos} = req.body
+                const pedido = await pedidoService.getById(idPedido);
+    
+                for(let i = 0; i < produtos.length; i++) {
+                    idProduto = produtos[i];
+                    const produto = await produtoService.getProdutoById(idProduto); 
+                    pedido.addProduto(produto);
+                };    
+                res.status(201).send('Produto adicionado com sucesso!')
+            } catch (e) {
+                res.status(400).send(e.message);
+            }        
+    })
 
 module.exports = router
+
