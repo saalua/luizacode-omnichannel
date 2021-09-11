@@ -1,11 +1,14 @@
 {
   "name": "luizacode-omnichannel",
   "version": "1.0.0",
-  "description": "\"API NodeJS para resolver  a funcionalidade de Omni Channel do cliente. Projeto proposto na aceleração Luiza Code, turma NodeJS.\"",
+  "description": "\"API NodeJS que desempenha a funcionalidade de Omni Channel do cliente. Projeto proposto no encerramento da aceleração Luiza Code, turma NodeJS.\"",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/app.js"
+    "start": "node src/app.js",
+    "swagger": "node src/swagger.js",
+    "dev": "nodemon src/app.js",
+    "fast-start": "node src/app.js --ignore-prestart-scripts"
   },
   "repository": {
     "type": "git",
@@ -23,7 +26,9 @@
     "express-routes": "^1.0.1",
     "express-validator": "^6.12.1",
     "pg": "^8.7.1",
-    "sequelize": "^6.6.5"
+    "sequelize": "^6.6.5",
+    "swagger-autogen": "^2.11.2",
+    "swagger-ui-express": "^4.1.6"
   },
   "devDependencies": {
     "nodemon": "^2.0.12"
