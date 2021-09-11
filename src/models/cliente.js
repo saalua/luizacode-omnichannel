@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      endereco: {
+      logradouro: {
         type: DataTypes.STRING,
         allowNull: false,
       },
