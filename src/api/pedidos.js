@@ -1,3 +1,4 @@
+const { request, response } = require('express');
 const express = require('express');
 const router = express.Router()
 const { check, validationResult } = require('express-validator');
@@ -132,59 +133,42 @@ router.post('/:idPedido/retirar',
                 res.status(400).json("Não é possível alterar o pedido quando o status se encontra como REALIZADA ou RETIRADO");
             }
         } catch(erro) {
-<<<<<<< HEAD
-          res.json({message: erro.message})
-        }
-      });
-
-
-    router.post('/', async (req, res) =>{
-      const produto = {
-        idCliente : req.body.id_cliente,
-        idLoja: req.body.id_loja,
-        idProdutos: req.body.id_produtos,
-      }
-      console.log(produto)
-      try{
-        await pedido.created({
-          idCliente: id_cliente,
-          idLoja: id_loja,
-          idProdutos: id_produtos,
-        }) 
-        res.status(201).send('Pedido cadastrado com sucesso')
-         } catch(erro){
-         console.log(erro);
-        res.status(400).send('Não foi possivel criar seu pedido no momento')
-         }
-
-      //  console.log("testando", req.body);
-      //  res.sendStatus(201);
-
-        /** o request body vai ser um array com vários id de produto, 
-         * 
-         * cadastrar: tem que percorrer o array dando create na tabela de produtospedidos passando o id do pedido e id do produto
-         * Regra: verificar se os produtos tem o mesmo id 
-         */
-        // try{
-        //   await pedido.create({
-        //       idCliente, 
-        //       idLoja: id_loja,
-        //       idProdutos,
-        //       status: "REALIZADA",
-        //       total: 0
-        //     })
-        //   res.status(201).send('Cliente cadastrado com sucesso')
-        // } catch(erro){
-        //     console.log(erro);
-        //   res.status(400).send('Não foi possivel cadastrar o cliente')
-        // }
-  
-      });
-=======
             res.json({message: erro.message});
         }
     });
-      
 
->>>>>>> eda53a078eba6ea243f4f9c769b45f4e76f5e607
+    router.post('/',
+        check('idPedido')
+            .not().isEmpty()
+            .withMessage('idPedido do pedido obrigatório')
+            .matches(/\d/)
+            .withMessage('idPedido não é um número'),            
+        check('produtos')
+            .isArray()
+            .withMessage('Campo "produtos" deve ser uma lista')
+            .isLength({ min: 1 })
+            .withMessage('Campo "produtos" deve ter no minímo 1 item'),            
+        async (req, res) =>{
+
+            const errors = validationResult(req)
+            if (!errors.isEmpty()) {
+                return res.status(400).json({ errors: errors.array() })
+            }    
+        
+            try {
+                const { idPedido, produtos} = req.body
+                const pedido = await pedidoService.getById(idPedido);
+    
+                for(let i = 0; i < produtos.length; i++) {
+                    idProduto = produtos[i];
+                    const produto = await produtoService.getProdutoById(idProduto); 
+                    pedido.addProduto(produto);
+                };    
+                res.status(201).send('Produto adicionado com sucesso!')
+            } catch (e) {
+                res.status(400).send(e.message);
+            }        
+    })
+
 module.exports = router
+
