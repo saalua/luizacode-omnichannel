@@ -12,6 +12,9 @@ const pedidoService = new PedidoService(pedido);
 const produtoService = new ProdutoService(produto);
 const produtosPedidosService = new ProdutosPedidosService(produtosPedido);
 
+//Teste commit
+
+
   router.get('/:idPedido',
     check('idPedido')
         .not().isEmpty()
