@@ -76,6 +76,7 @@ router.get('/:idCliente/pedidos/:idPedido',
 
     });
 
+    //adicionar o produto
 router.post('/:idCliente/pedidos',
     async (req, res) => {
 

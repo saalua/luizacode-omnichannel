@@ -27,8 +27,8 @@ router.get('/:idProduto',
   const produto = await produtoService.getById(idProduto);
 
   return res.status(200).json({
-    data: result
-});
+    data: produto
+  });
 
 }); 
 
