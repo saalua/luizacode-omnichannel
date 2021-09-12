@@ -11,14 +11,52 @@ router.get('/', async (req, res) => {
   res.status(200).json(produtos);
 });
 
+router.get('/:idProduto', 
 
-//add validacao id produto se e numerico
-// se voltar null deve voltar 404 e msg tratada
-router.get('/:id', async (req, res) => {
-  const idProduto = req.params.id;
+  async (req, res) => {
+
+  const idProduto = req.params.idProduto;
+  
+  const validacaoPedido = await validaProduto(idProduto);
+    
+  if (!validacaoPedido.isValid) {
+      return res.status(400).json({ errors: validacaoPedido.errors })
+        
+  }
+  
   const produto = await produtoService.getById(idProduto);
-  res.status(200).json(produto);
+
+  return res.status(200).json({
+    data: result
 });
 
+}); 
+
 module.exports = router;
+
+async function validaProduto(idProduto) {
+
+  const result = {
+      isValid: true,
+      errors: [],
+      data: null
+  }
+
+  if (isNaN(idProduto)) {
+      result.isValid = false;
+      result.errors = [{param: "idProduto", "location": "path", msg: "idProduto deve ser númerico (" + idProduto + ")"}];
+      return result;
+  } 
+
+  const produto = await produtoService.getById(idProduto);
+  result.data = produto;
+
+  if (produto == null) {
+      result.isValid = false;
+      result.errors = [{param: "idProduto", "location": "path", msg: "Produto não encontrado (" + idProduto + ")"}];
+      return result;
+  }
+
+  return result; 
+}
 

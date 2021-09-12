@@ -19,8 +19,8 @@ class ClienteService {
 
   async create(cliente) {
     const {nome, endereco, bairro, cidade, cep} = cliente;
-    return await cliente.create({nome, endereco, bairro, cidade, cep});
+    return await this.model.create({nome, endereco, bairro, cidade, cep});
   }
 }
 
-module.exports = {ClienteService};
+module.exports = {ClienteService}
