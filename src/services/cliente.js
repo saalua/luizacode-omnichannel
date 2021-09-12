@@ -17,9 +17,33 @@ class ClienteService {
     return result;
   }
 
-  async create(cliente) {
-    const {nome, endereco, bairro, cidade, cep} = cliente;
-    return await this.model.create({nome, endereco, bairro, cidade, cep});
+  async getByEmail(email) {
+    const clientes = await this.model.findOne({
+      where: { email: email },
+    });
+    return clientes;
+  }
+
+  async createUser(nome, logradouro, bairro, cidade, cep, email, senha) {
+    const findCliente = await this.getByEmail(email);
+
+    if (findCliente) {
+      throw new Error('Usuário já cadastrado!');
+    }
+
+    try {
+      await this.model.create({
+        nome,
+        logradouro,
+        bairro,
+        cidade,
+        cep,
+        email,
+        senha,
+      });
+    } catch (error) {
+      throw error;
+    }
   }
 }
 

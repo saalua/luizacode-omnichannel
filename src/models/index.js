@@ -16,24 +16,14 @@ const pedido = Pedido(sequelize, Sequelize.DataTypes);
 const ProdutosPedidos = require('./produtosPedido');
 const produtosPedido = ProdutosPedidos(sequelize, Sequelize.DataTypes);
 
-cliente.hasMany(pedido, {
-  foreignKey: 'idCliente'
-});
+cliente.hasMany(pedido, { foreignKey: 'idCliente' });
+pedido.belongsTo(cliente, { foreignKey: 'idCliente' });
 
-pedido.belongsTo(cliente, {
-  foreignKey: 'idCliente'
-});
+loja.hasMany(pedido, { foreignKey: 'idLoja' });
+pedido.belongsTo(loja, { foreignKey: 'idLoja' });
 
-loja.hasMany(pedido, {
-  foreignKey: 'idLoja'
-});
-
-pedido.belongsTo(loja, {
-  foreignKey: 'idCliente'
-});
-
-produto.belongsToMany(pedido, { through: 'ProdutosPedidos' });
-pedido.belongsToMany(produto, { through: 'ProdutosPedidos' });
+produto.hasMany(produtosPedido);
+pedido.hasMany(produtosPedido);
 
 const db = {
   loja,
@@ -41,7 +31,7 @@ const db = {
   cliente,
   pedido,
   produtosPedido,
-  sequelize
+  sequelize,
 };
 
 module.exports = db;

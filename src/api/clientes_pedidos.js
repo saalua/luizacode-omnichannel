@@ -133,7 +133,7 @@ router.post('/:idCliente/pedidos',
     });   
     
 });
-
+//ARRAY DE OBJETO
 router.put('/:idCliente/pedidos/:idPedido',
         check('idLoja')
             .isNumeric()
