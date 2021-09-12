@@ -1,13 +1,21 @@
 class LojaService {
     constructor (LojaModel) {
-        this.loja = LojaModel
+        this.model = LojaModel
     }
   
     async get () {
-      const lojas = await this.loja.findAll()
-      return lojas
+      return await this.model.findAll();
+    }
+
+    async getById(id) {
+      const result = await this.model.findOne({
+        where: {
+          id
+        }
+      });
+      return result;
     }
 
 }
-  
+ 
 module.exports = LojaService

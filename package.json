@@ -6,8 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/app.js",
-    "swagger": "node src/swagger.js",
-    "fast-start": "node src/app.js --ignore-prestart-scripts"
+    "dev": "nodemon src/app.js",
+    "fast-start": "node src/app.js --ignore-prestart-scripts",
+    "swagger": "node src/swagger.js"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,8 @@
     "express": "^4.17.1",
     "express-routes": "^1.0.1",
     "express-validator": "^6.12.1",
+    "jsonwebtoken": "^8.5.1",
+    "md5": "^2.3.0",
     "pg": "^8.7.1",
     "sequelize": "^6.6.5",
     "swagger-autogen": "^2.11.2",
