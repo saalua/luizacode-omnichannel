@@ -29,6 +29,14 @@
     "http",
     "https"
   ],
+  "securityDefinitions": {
+    "apiKeyAuth": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "authorization",
+      "description": "Insira seu token no campo abaixo:"
+    }
+  },
   "consumes": [
     "application/json"
   ],
@@ -130,10 +138,18 @@
           "400": {
             "description": "Houve algum erro na requisição."
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "404": {
             "description": "Pedido não encontrado."
           }
-        }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
       }
     },
     "/pedidos/": {
@@ -156,10 +172,18 @@
           "400": {
             "description": "Houve algum erro na requisição."
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "404": {
             "description": "Pedidos não encontrados."
           }
-        }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
       },
       "post": {
         "tags": [
@@ -193,10 +217,18 @@
           "400": {
             "description": "Houve algum erro na requisição."
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "404": {
             "description": "Pedido não encontrado."
           }
-        }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
       }
     },
     "/pedidos/{idPedido}/finalizar": {
@@ -220,10 +252,18 @@
           "400": {
             "description": "Houve algum erro na requisição."
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "404": {
             "description": "Pedido não encontrado."
           }
-        }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
       }
     },
     "/pedidos/{idPedido}/retirar": {
@@ -247,10 +287,18 @@
           "400": {
             "description": "Houve algum erro na requisição."
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "404": {
             "description": "Pedido não encontrado."
           }
-        }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
       }
     },
     "/pedidos/{idPedido}/remover/{idProduto}": {
@@ -280,10 +328,18 @@
           "400": {
             "description": "Houve algum erro na requisição."
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "404": {
             "description": "Pedido não encontrado."
           }
-        }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
       }
     },
     "/clientes\r/": {
@@ -325,17 +381,53 @@
           }
         ],
         "responses": {
-          "200": {
+          "201": {
+            "description": "Cliente cadastrado com sucesso.",
             "schema": {
               "$ref": "#/definitions/Clientes"
-            },
-            "description": "Cadastro realizado."
-          },
-          "201": {
-            "description": "Created"
+            }
           },
           "400": {
             "description": "Houve algum erro na requisição."
+          }
+        }
+      }
+    },
+    "/clientes\r/login": {
+      "post": {
+        "tags": [
+          "Clientes"
+        ],
+        "description": "Endpoint para o login do usuário, disponibilizando o token de acesso aos recursos de pedido.",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "example": "any"
+                },
+                "senha": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Login feito com sucesso."
+          },
+          "400": {
+            "description": "Houve algum erro na requisição."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "404": {
+            "description": "Usuário não cadastrado."
           }
         }
       }
@@ -390,9 +482,9 @@
           "type": "string",
           "example": "Magalu SP"
         },
-        "endereco": {
+        "logradouro": {
           "type": "string",
-          "example": "Bairro Lago das Rosas, quadra 70, rua 92."
+          "example": "Rua Lago das Rosas."
         },
         "bairro": {
           "type": "string",
@@ -460,9 +552,9 @@
           "type": "string",
           "example": "Ana"
         },
-        "endereco": {
+        "logradouro": {
           "type": "string",
-          "example": "São Paulo, rua Augusta, n° 835."
+          "example": "Rua Augusta."
         },
         "bairro": {
           "type": "string",
@@ -475,6 +567,14 @@
         "cep": {
           "type": "string",
           "example": "12345678"
+        },
+        "email": {
+          "type": "string",
+          "example": "ana@email.com"
+        },
+        "senha": {
+          "type": "string",
+          "example": "123456"
         }
       }
     }

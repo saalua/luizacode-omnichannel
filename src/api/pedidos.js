@@ -12,10 +12,12 @@ const pedidoService = new PedidoService(pedido);
 const produtoService = new ProdutoService(produto);
 const produtosPedidosService = new ProdutosPedidosService(produtosPedido);
 
+const auth = require('./validateAuth')
+
 //Teste commit
 
 
-  router.get('/:idPedido',
+  router.get('/:idPedido', auth,
     check('idPedido')
         .not().isEmpty()
         .matches(/\d/)
@@ -25,6 +27,9 @@ const produtosPedidosService = new ProdutosPedidosService(produtosPedido);
 /*
     #swagger.tags = ['Pedidos']
     #swagger.description = 'Endpoint para a consulta de pedidos do cliente por ID.' 
+    #swagger.security = [{
+        "apiKeyAuth":[]
+    }]
     #swagger.responses[200] = {
     description: 'Consulta realizada com sucesso.'
     }
@@ -50,7 +55,7 @@ const produtosPedidosService = new ProdutosPedidosService(produtosPedido);
         }
     });
 
-  router.get('/',
+  router.get('/', auth,
     check('idCliente')
         .not().isEmpty()
         .matches(/\d/)
@@ -60,6 +65,9 @@ const produtosPedidosService = new ProdutosPedidosService(produtosPedido);
 /*
     #swagger.tags = ['Pedidos']
     #swagger.description = 'Endpoint para a consulta de todos os pedidos do cliente.' 
+    #swagger.security = [{
+        "apiKeyAuth":[]
+    }]
     #swagger.responses[200] = {
     description: 'Consulta realizada com sucesso.'
     }
@@ -80,7 +88,7 @@ const produtosPedidosService = new ProdutosPedidosService(produtosPedido);
         res.status(200).json(pedidos)
     })
 
-  router.post('/:idPedido/finalizar',
+  router.post('/:idPedido/finalizar', auth,
     check('idPedido')
         .not().isEmpty()
         .matches(/\d/)
@@ -90,6 +98,9 @@ const produtosPedidosService = new ProdutosPedidosService(produtosPedido);
 /*
     #swagger.tags = ['Pedidos']
     #swagger.description = 'Endpoint para finalizar o pedido do cliente.' 
+    #swagger.security = [{
+        "apiKeyAuth":[]
+    }]
     #swagger.responses[200] = {
     description: 'Pedido finalizado.'
     }
@@ -120,7 +131,7 @@ const produtosPedidosService = new ProdutosPedidosService(produtosPedido);
         }
     })
 
-router.post('/:idPedido/retirar',
+router.post('/:idPedido/retirar', auth,
     check('idPedido')
         .not().isEmpty()
         .matches(/\d/)
@@ -130,6 +141,9 @@ router.post('/:idPedido/retirar',
 /*
     #swagger.tags = ['Pedidos']
     #swagger.description = 'Endpoint para retirar o pedido do cliente.' 
+    #swagger.security = [{
+        "apiKeyAuth":[]
+    }]    
     #swagger.responses[200] = {
     description: 'Pedido pronto para ser retirado.'
     }
@@ -161,7 +175,7 @@ router.post('/:idPedido/retirar',
         }
     });
 
-    router.delete('/:idPedido/remover/:idProduto',
+    router.delete('/:idPedido/remover/:idProduto', auth,
         check('idPedido')
         .not().isEmpty()
         .matches(/\d/)
@@ -177,6 +191,9 @@ router.post('/:idPedido/retirar',
 /*
     #swagger.tags = ['Pedidos']
     #swagger.description = 'Endpoint para remover um pedido.' 
+    #swagger.security = [{
+        "apiKeyAuth":[]
+    }]    
     #swagger.responses[200] = {
     description: 'Pedido cancelado.'
     }
@@ -211,7 +228,7 @@ const erros = validationResult(req);
         }
     });
 
-    router.post('/',
+    router.post('/', auth,
         check('idPedido')
             .not().isEmpty()
             .withMessage('idPedido do pedido obrigatório')
@@ -227,6 +244,9 @@ const erros = validationResult(req);
 /*
     #swagger.tags = ['Pedidos']
     #swagger.description = 'Endpoint para se realizar um pedido.' 
+    #swagger.security = [{
+        "apiKeyAuth":[]
+    }]    
     #swagger.responses[200] = {
     description: 'Pedido finalizado.'
     }

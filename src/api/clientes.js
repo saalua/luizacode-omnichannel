@@ -52,9 +52,9 @@ router.post(
     /*
 			#swagger.tags = ['Clientes']
 			#swagger.description = 'Endpoint para o cadastro do cliente.' 
-			#swagger.responses[200] = {
+			#swagger.responses[201] = {
 			schema: { $ref: "#/definitions/Clientes"},
-			description: 'Cadastro realizado.'
+			description: 'Cliente cadastrado com sucesso.'
 			}
 			#swagger.responses[400] = {
 			description: 'Houve algum erro na requisição.'
@@ -98,6 +98,24 @@ router.post(
     .isLength({ min: 6 })
     .withMessage('O campo "senha" deve conter ao menos 6 caracteres'),
   async (req, res) => {
+
+/*
+    #swagger.tags = ['Clientes']
+    #swagger.description = 'Endpoint para o login do usuário, disponibilizando o token de acesso aos recursos de pedido.' 
+    #swagger.responses[200] = {
+      description: 'Login feito com sucesso.',
+    }
+    #swagger.responses[400] = {
+      description: 'Houve algum erro na requisição.'
+    }
+    #swagger.responses[401] = {
+      description: 'Unauthorized.'
+    }
+    #swagger.responses[404] = {
+      description: 'Usuário não cadastrado.'
+    }
+*/
+
     const erros = validationResult(req);
 
     if (!erros.isEmpty()) {
