@@ -1,14 +1,20 @@
 const express = require('express');
 const router = express.Router();
 const { cliente } = require('../models');
+const {ClienteService} = require('../services/cliente');
+const clienteService = new ClienteService(cliente);
 
 router.post('/', async (req, res) =>{
-  const {nome, endereco, bairro, cidade, cep} = req.body
-  try{
-    await cliente.create({nome, endereco, bairro, cidade, cep})
-    res.status(201).send('Cliente cadastrado com sucesso')
-  } catch(erro){
-    res.status(400).send('Não foi possivel cadastrar o cliente')
+  const cliente = req.body
+  try {
+    const result = await clienteService.create(cliente);
+    res.status(201).send({
+      data: result
+    });
+  } catch(e){
+    res.status(400).send({
+      errors: [{msg:'Não foi possivel cadastrar o cliente'}]
+    });
   }
 });
 

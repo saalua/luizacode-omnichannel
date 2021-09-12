@@ -8,7 +8,7 @@ class ProdutoService {
     return produtos;
   }
 
-  async getProdutoById(id) {
+  async getById(id) {
     const produto = await this.produto.findOne({
       where: {
         id

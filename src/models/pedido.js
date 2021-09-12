@@ -9,14 +9,10 @@ module.exports = (sequelize, DataTypes) => {
             },
             idLoja: {
                 type: DataTypes.INTEGER,
-                allowNull: false,
+                allowNull: true,
             },
             idCliente: {
                 type: DataTypes.INTEGER,
-                allowNull: false,
-            },
-            total: {
-                type: DataTypes.FLOAT,
                 allowNull: false,
             },
             status: {

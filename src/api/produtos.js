@@ -11,9 +11,12 @@ router.get('/', async (req, res) => {
   res.status(200).json(produtos);
 });
 
+
+//add validacao id produto se e numerico
+// se voltar null deve voltar 404 e msg tratada
 router.get('/:id', async (req, res) => {
   const idProduto = req.params.id;
-  const produto = await produtoService.getProdutoById(idProduto);
+  const produto = await produtoService.getById(idProduto);
   res.status(200).json(produto);
 });
 

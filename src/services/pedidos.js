@@ -18,11 +18,15 @@ const STATUS = {
 
 class PedidoService {
     constructor(pedidoModel) {
-        this.pedido = pedidoModel;
+        this.model = pedidoModel;
+    }
+
+    async get() {
+        return await this.model.findAll();
     }
 
     async getAllByIdCliente(idCliente) {
-        const pedidos = await this.pedido.findAll({
+        const pedidos = await this.model.findAll({
             where: {
                 idCliente
             }
@@ -30,13 +34,28 @@ class PedidoService {
         return pedidos;
     }
 
+    async getByIdClienteAndIdPedido(idCliente, idPedido) {
+        const pedidos = await this.model.findOne({
+            where: {
+                idCliente,
+                id: idPedido
+            }
+        })
+        return pedidos;
+    }
+
     async getById(id) {
-        const pedido = await this.pedido.findByPk(id);
+        const pedido = await this.model.findByPk(id);
         return pedido;
     }
 
+    async create(pedido) {
+        const {idCliente} = pedido;
+        return await this.model.create({status: STATUS.ANDAMENTO, idCliente});
+    }
+
     async retirarPedido(idPedido) {
-        const pedidoEncontrado = await this.pedido.findByPk(idPedido)
+        const pedidoEncontrado = await this.model.findByPk(idPedido)
         
         if (pedidoEncontrado == null) return RETIRAR_PEDIDO.PEDIDO_NAO_ENCONTRADO
 
@@ -48,7 +67,7 @@ class PedidoService {
     }
 
     async finalizarPedido(idPedido) {
-        const pedidoEncontrado = await this.pedido.findByPk(idPedido);
+        const pedidoEncontrado = await this.model.findByPk(idPedido);
         
         if (pedidoEncontrado == null) return FINALIZAR_PEDIDO.PEDIDO_NAO_ENCONTRADO;
 
