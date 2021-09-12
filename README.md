@@ -51,7 +51,7 @@ USER=postgres
 PASS=senha
 HOST=localhost
 PGPORT=5432
-
+JWTSecret=palavra-secreta
 ```
 
 ## ☕ Usando o Omni Channel
@@ -71,8 +71,24 @@ npm start
 localhost:3000/docs
 ```
 
+## :page_with_curl: Documentação Swagger
+Endpoints acessíveis sem autenticação: 
+- Retornar todas as lojas
+- Retornar todos os produtos e produtos por id
+- Criar um novo cliente
+- Fazer login
+
+![endpoints][endpoints-01]
+<br>
+
+Endpoints com autenticação: 
+
+```
+imagem aqui
+```
 
 ## :game_die: Banco de dados
+Diagrama do banco de dados:
 ![diagrama banco de dados][diagrama-bd]
 
 <br>
@@ -81,6 +97,10 @@ localhost:3000/docs
 Os testes automatizados da aplicação foram desenvolvidos com o framework Cypress. Os testes podem ser encontrados no repositório abaixo: 
 
 <a href="https://github.com/saalua/luizacode-omnichannel-cypress"> Repositório Cypress </a>
+
+```
+[gif aqui]
+```
 
 <br>
 
