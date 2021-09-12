@@ -6,6 +6,21 @@ const pedidoService = new PedidoService(pedido);
 
 router.get('/:idPedido',
     async (req, res) => {
+
+        /*
+    #swagger.tags = ['Pedidos']
+    #swagger.description = 'Endpoint para a consulta de pedidos do cliente por ID.' 
+    #swagger.security = [{
+        "apiKeyAuth":[]
+    }]
+    #swagger.responses[200] = {
+    description: 'Consulta realizada com sucesso.'
+    }
+    #swagger.responses[404] = {
+    description: 'Pedido não encontrado.'
+    }
+*/
+
         const { idPedido } = req.params
         const pedidoEncontrado = await pedidoService.getById(idPedido);
         if (pedidoEncontrado == null) {
@@ -19,6 +34,17 @@ router.get('/:idPedido',
 
 router.get('/',
     async (req, res) => {
+
+        /*
+    #swagger.tags = ['Pedidos']
+    #swagger.description = 'Endpoint para a consulta de todos os pedidos do cliente.' 
+    #swagger.security = [{
+        "apiKeyAuth":[]
+    }]
+    #swagger.responses[200] = {
+    description: 'Consulta realizada com sucesso.'
+*/
+
         const pedidos = await pedidoService.get();
         res.status(200).json({
             data: pedidos
@@ -27,6 +53,23 @@ router.get('/',
 
 router.patch('/:idPedido/retirado',
     async (req, res) => {
+
+        /*
+    #swagger.tags = ['Pedidos']
+    #swagger.description = 'Endpoint para retirar o pedido do cliente.' 
+    #swagger.security = [{
+        "apiKeyAuth":[]
+    }]    
+    #swagger.responses[200] = {
+    description: 'Pedido pronto para ser retirado.'
+    }
+    #swagger.responses[404] = {
+    description: 'Pedido não encontrado.'
+    }
+    #swagger.responses[400] = {
+    description: 'Houve algum erro na requisição.'
+    }
+*/
         
         const idPedido = req.params.idPedido;
         const validacaoPedido = await validaIdPedido(idPedido);

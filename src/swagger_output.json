@@ -1,0 +1,418 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Luiza<Code> - Omni Channel",
+    "description": "API NodeJS que desempenha a funcionalidade de Omni Channel do cliente. Projeto proposto no encerramento da aceleração Luiza Code, turma NodeJS."
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Lojas",
+      "description": "Endpoints relacionados às lojas."
+    },
+    {
+      "name": "Produtos",
+      "description": "Endpoints relacionados aos recursos de produto."
+    },
+    {
+      "name": "Clientes",
+      "description": "Endpoints relacionados ao usuário."
+    },
+    {
+      "name": "Pedidos",
+      "description": "Endpoints relacionados aos pedidos do cliente."
+    }
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "securityDefinitions": {
+    "apiKeyAuth": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "authorization",
+      "description": "Insira seu token no campo abaixo:"
+    }
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/lojas/": {
+      "get": {
+        "tags": [
+          "Lojas"
+        ],
+        "description": "Endpoint para se obter a lista das lojas.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Lista de lojas encontrada.",
+            "schema": {
+              "$ref": "#/definitions/Lojas"
+            }
+          }
+        }
+      }
+    },
+    "/produtos/": {
+      "get": {
+        "tags": [
+          "Produtos"
+        ],
+        "description": "Endpoint para se obter uma lista de produtos.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Lista de produtos encontrada.",
+            "schema": {
+              "$ref": "#/definitions/Produtos"
+            }
+          }
+        }
+      }
+    },
+    "/produtos/{idProduto}": {
+      "get": {
+        "tags": [
+          "Produtos"
+        ],
+        "description": "Endpoint para acessar um produto pelo seu ID.",
+        "parameters": [
+          {
+            "name": "idProduto",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Produto encontrado."
+          },
+          "400": {
+            "description": "Houve algum erro na requisição."
+          }
+        }
+      }
+    },
+    "/clientes/": {
+      "post": {
+        "tags": [
+          "Clientes"
+        ],
+        "description": "Endpoint para o cadastro do cliente.",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "example": "any"
+                },
+                "endereco": {
+                  "example": "any"
+                },
+                "bairro": {
+                  "example": "any"
+                },
+                "cidade": {
+                  "example": "any"
+                },
+                "cep": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Cliente cadastrado com sucesso.",
+            "schema": {
+              "$ref": "#/definitions/Clientes"
+            }
+          },
+          "400": {
+            "description": "Houve algum erro na requisição."
+          }
+        }
+      }
+    },
+    "/clientes/{idCliente}/pedidos": {
+      "get": {
+        "tags": [
+          "Pedidos"
+        ],
+        "description": "Endpoint para o obter os pedidos do cliente.",
+        "parameters": [
+          {
+            "name": "idCliente",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pedidos do cliente localizados com sucesso."
+          },
+          "400": {
+            "description": "Houve algum erro na requisição."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Pedidos"
+        ],
+        "description": "Endpoint para cadastrar um pedido do cliente.",
+        "parameters": [
+          {
+            "name": "idCliente",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pedido do cadastrado com sucesso."
+          },
+          "400": {
+            "description": "Houve algum erro na requisição."
+          }
+        }
+      }
+    },
+    "/clientes/{idCliente}/pedidos/{idPedido}": {
+      "get": {
+        "tags": [
+          "Pedidos"
+        ],
+        "description": "Endpoint para o retonrar um pedido do cliente pelo ID.",
+        "parameters": [
+          {
+            "name": "idCliente",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "idPedido",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pedido do cliente localizado com sucesso."
+          },
+          "400": {
+            "description": "Houve algum erro na requisição."
+          },
+          "404": {
+            "description": "Pedido não encontrado."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Pedidos"
+        ],
+        "description": "Endpoint para adicionar um produto na lista de compra do cliente.",
+        "parameters": [
+          {
+            "name": "idCliente",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "idPedido",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "produtos": {
+                  "example": "any"
+                },
+                "idLoja": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pedido adicionado com sucesso."
+          },
+          "400": {
+            "description": "Não e permitido cadastrar mais de um produto da mesma categoria."
+          },
+          "404": {
+            "description": "Houve um erro na requisição."
+          }
+        }
+      }
+    },
+    "/clientes/{idCliente}/pedidos/{idPedido}/finalizar": {
+      "patch": {
+        "tags": [
+          "Pedidos"
+        ],
+        "description": "Endpoint para finalizar a compra do cliente.",
+        "parameters": [
+          {
+            "name": "idCliente",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "idPedido",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pedido finalizado com sucesso."
+          },
+          "400": {
+            "description": "Não é possível finalizar se o pedido está em andamento."
+          },
+          "404": {
+            "description": "Houve um erro na requisição."
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Lojas": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "example": 1
+        },
+        "filial": {
+          "type": "string",
+          "example": "Magalu SP"
+        },
+        "logradouro": {
+          "type": "string",
+          "example": "Rua Lago das Rosas."
+        },
+        "bairro": {
+          "type": "string",
+          "example": "Lago das Rosas"
+        },
+        "cidade": {
+          "type": "string",
+          "example": "São Paulo"
+        },
+        "cep": {
+          "type": "string",
+          "example": "12345678"
+        },
+        "updated_at": {
+          "type": "string",
+          "example": "2021-12-12 03:03:00"
+        },
+        "created_at": {
+          "type": "string",
+          "example": "2021-12-12 03:03:00"
+        }
+      }
+    },
+    "Produtos": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "example": 1
+        },
+        "produto": {
+          "type": "string",
+          "example": "Notebook"
+        },
+        "categoria": {
+          "type": "string",
+          "example": "Informática"
+        },
+        "valor": {
+          "type": "number",
+          "example": 2500
+        },
+        "descricao": {
+          "type": "string",
+          "example": "Notebook com memória de 4GB, SSD de 128GB, processamento em 64bits, branco."
+        },
+        "marca": {
+          "type": "string",
+          "example": "Dell"
+        },
+        "updated_at": {
+          "type": "string",
+          "example": "2021-12-12 03:03:00"
+        },
+        "created_at": {
+          "type": "string",
+          "example": "2021-12-12 03:03:00"
+        }
+      }
+    },
+    "Clientes": {
+      "type": "object",
+      "properties": {
+        "nome": {
+          "type": "string",
+          "example": "Ana"
+        },
+        "logradouro": {
+          "type": "string",
+          "example": "Rua Augusta."
+        },
+        "bairro": {
+          "type": "string",
+          "example": "Jardim da Liberdade"
+        },
+        "cidade": {
+          "type": "string",
+          "example": "São Paulo"
+        },
+        "cep": {
+          "type": "string",
+          "example": "12345678"
+        },
+        "email": {
+          "type": "string",
+          "example": "ana@email.com"
+        },
+        "senha": {
+          "type": "string",
+          "example": "123456"
+        }
+      }
+    }
+  }
+}

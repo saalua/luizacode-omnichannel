@@ -19,6 +19,17 @@ const lojaService = new LojaService(loja);
 router.get('/:idCliente/pedidos',
     async (req, res) => {
 
+         /*
+			#swagger.tags = ['Pedidos']
+			#swagger.description = 'Endpoint para o obter os pedidos do cliente.' 
+			#swagger.responses[200] = {
+			description: 'Pedidos do cliente localizados com sucesso.'
+			}
+			#swagger.responses[400] = {
+			description: 'Houve algum erro na requisição.'
+			}
+		*/
+
         const idCliente = req.params.idCliente;
 
         const validacao = await validaCliente(idCliente);
@@ -36,6 +47,20 @@ router.get('/:idCliente/pedidos',
 
 router.get('/:idCliente/pedidos/:idPedido',
     async (req, res) => {
+
+         /*
+			#swagger.tags = ['Pedidos']
+			#swagger.description = 'Endpoint para o retonrar um pedido do cliente pelo ID.' 
+			#swagger.responses[200] = {
+			description: 'Pedido do cliente localizado com sucesso.'
+			}
+			#swagger.responses[400] = {
+			description: 'Houve algum erro na requisição.'
+			}
+            #swagger.responses[404] = {
+			description: 'Pedido não encontrado.'
+			}
+		*/
 
         const idCliente = req.params.idCliente;
         const idPedido = req.params.idPedido;
@@ -80,6 +105,18 @@ router.get('/:idCliente/pedidos/:idPedido',
 router.post('/:idCliente/pedidos',
     async (req, res) => {
 
+        /*
+			#swagger.tags = ['Pedidos']
+			#swagger.description = 'Endpoint para cadastrar um pedido do cliente.' 
+			#swagger.responses[200] = {
+			description: 'Pedido do cadastrado com sucesso.'
+			}
+			#swagger.responses[400] = {
+			description: 'Houve algum erro na requisição.'
+			}
+        
+		*/
+
     const idCliente = req.params.idCliente;
 
     const validacao = await validaCliente(idCliente);
@@ -108,6 +145,22 @@ router.put('/:idCliente/pedidos/:idPedido',
             .withMessage('Campo "produtos" deve ter no minímo 1 item'),
 
     async (req, res) => {
+
+         /*
+			#swagger.tags = ['Pedidos']
+			#swagger.description = 'Endpoint para adicionar um produto na lista de compra do cliente.' 
+			#swagger.responses[200] = {
+			description: 'Pedido adicionado com sucesso.'
+			}
+			#swagger.responses[400] = {
+			description: 'Não e permitido cadastrar mais de um produto da mesma categoria.'
+			}
+            #swagger.responses[404] = {
+			description: 'Houve um erro na requisição.'
+			}
+        
+		*/
+
 
         const idCliente = req.params.idCliente;
         const idPedido = req.params.idPedido;
@@ -180,6 +233,22 @@ router.put('/:idCliente/pedidos/:idPedido',
 
 router.patch('/:idCliente/pedidos/:idPedido/finalizar',
     async (req, res) => {
+
+         /*
+			#swagger.tags = ['Pedidos']
+			#swagger.description = 'Endpoint para finalizar a compra do cliente.' 
+			#swagger.responses[200] = {
+			description: 'Pedido finalizado com sucesso.'
+			}
+			#swagger.responses[400] = {
+			description: 'Não é possível finalizar se o pedido está em andamento.'
+			}
+            #swagger.responses[404] = {
+			description: 'Houve um erro na requisição.'
+			}
+        
+		*/
+
 
         const idCliente = req.params.idCliente;
         const idPedido = req.params.idPedido;

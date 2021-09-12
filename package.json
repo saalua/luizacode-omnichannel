@@ -7,7 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/app.js",
     "dev": "nodemon src/app.js",
-    "fast-start": "node src/app.js --ignore-prestart-scripts"
+    "fast-start": "node src/app.js --ignore-prestart-scripts",
+    "swagger": "node src/swagger.js"
+
   },
   "repository": {
     "type": "git",
@@ -25,7 +27,9 @@
     "express-routes": "^1.0.1",
     "express-validator": "^6.12.1",
     "pg": "^8.7.1",
-    "sequelize": "^6.6.5"
+    "sequelize": "^6.6.5",
+    "swagger-autogen": "^2.11.2",
+    "swagger-ui-express": "^4.1.6"
   },
   "devDependencies": {
     "nodemon": "^2.0.12"

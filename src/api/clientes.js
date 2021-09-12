@@ -34,6 +34,19 @@ router.post('/',
     .withMessage('O campo "cep" deve conter 8 dígitos'),
 
   async (req, res) => {
+
+    /*
+			#swagger.tags = ['Clientes']
+			#swagger.description = 'Endpoint para o cadastro do cliente.' 
+			#swagger.responses[201] = {
+			schema: { $ref: "#/definitions/Clientes"},
+			description: 'Cliente cadastrado com sucesso.'
+			}
+			#swagger.responses[400] = {
+			description: 'Houve algum erro na requisição.'
+			}
+		*/
+
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() })
@@ -43,9 +56,7 @@ router.post('/',
 
     try {
       await clienteService.create({ nome, endereco, bairro, cidade, cep })
-      res.status(201).send({
-        data: result
-      })
+      res.status(201).send('Cliente cadastrado com sucesso')
     } catch(error){
       res.status(400).send(error.message)
     }
