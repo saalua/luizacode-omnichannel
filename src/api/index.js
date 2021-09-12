@@ -5,7 +5,6 @@ const produtosRouter = require('./produtos')
 const pedidosRouter = require('./pedidos')
 const clientesRouter = require('./clientes')
 
-
 const router = express.Router()
 
 router.use('/lojas', lojasRouter)

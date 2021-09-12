@@ -36,7 +36,7 @@ const doc = {
         Lojas: {
             id: 1,
             filial: "Magalu SP",
-            logradouro: "Bairro Lago das Rosas, quadra 70, rua 92.",
+            logradouro: "Rua Lago das Rosas.",
             bairro: "Lago das Rosas",
             cidade: "São Paulo",
             cep: "12345678",
@@ -55,14 +55,22 @@ const doc = {
         },
         Clientes: {
             nome: "Ana",
-            logradouro: "São Paulo, rua Augusta, n° 835.",
+            logradouro: "Rua Augusta.",
             bairro: "Jardim da Liberdade",
             cidade: "São Paulo",
             cep: "12345678",
-            email: "ana@gmail.com",
-            senha: "senha123"
+            email: "ana@email.com",
+            senha: "123456"
         }
-    }
+    },
+    securityDefinitions: {
+        apiKeyAuth: {
+            type: "apiKey",
+            in: 'header',
+            name: 'authorization',
+            description: 'Insira seu token no campo abaixo:'
+        },
+    },
 }
 
 swaggerAutogen(outputFile, endpointFile, doc)
