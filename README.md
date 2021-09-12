@@ -12,21 +12,39 @@
 
 <a href="https://ibb.co/mF5btfN"><img src="https://i.ibb.co/k6250Nm/luiza-banner.png" alt="luiza-banner" width="100%" border="0"></a><br /><a target='_blank' href='https://imgbb.com/'></a><br />
 
-> Linha adicional de texto informativo sobre o que o projeto faz. Sua introdução deve ter cerca de 2 ou 3 linhas. Não exagere, as pessoas não vão ler.
+> O objetivo do projeto final do Luiza < Code > é desenvolver um serviço HTTP que resolve a funcionalidade de Omni Channel do cliente.
 
-## 💻 Preview
 
 ## :heavy_check_mark: Pré-requisitos
+API contendo os seguintes endpoints:
+- Listar produtos
+- Listar lojas físicas
+- Cadastrar cliente
+- Adicionar um produto na lista de compra da cliente;
+- Remover um produto da lista de compra da cliente;
+- Finalizar compra
+- Consultar todas as compras realizadas da cliente; 
+
+
+## 🚀 Instalação e configuração
 
 Antes de começar, verifique se você atendeu aos seguintes requisitos:
-* Você tem uma máquina `Windows, Linux ou Mac`.
 * Você instalou a versão mais recente do `npm, node e postgres`
-
-## 🚀 Instalação
 
 Para a instalação, siga estas etapas:
 
-1) Crie um arquivo chamado ```.env``` na raiz do projeto com as variáveis abaixo e o preenche com as informações de autenticação do seu banco de dados, como no exemplo: 
+1) Faça um clone do repositório:
+```
+  git clone https://github.com/saalua/luizacode-omnichannel.git
+```
+
+2) Na pasta do projeto, abra o terminal e execute o comando abaixo para instalar as dependências:
+
+```
+npm install
+```
+
+3) Crie um arquivo chamado ```.env``` na raiz do projeto com as variáveis abaixo e o preenche com as informações de autenticação do seu banco de dados, como no exemplo: 
 ```
 DB=postgres
 USER=postgres
@@ -36,20 +54,35 @@ PGPORT=5432
 
 ```
 
-2) Na pasta do projeto, abra o terminal e execute o comando abaixo para instalar as dependências:
-
-```
-npm install
-```
-
 ## ☕ Usando o Omni Channel
 
 Para usar, siga estas etapas:
 
+1) Na pasta da aplicação, abra o terminal e digite. O servidor irá iniciar na porta 3000, caso queira trocar a porta, altere no arquivo app.js 
+
 ```
-<Adicione comandos de execução e exemplos que você acha que os usuários acharão úteis. Fornece uma referência de opções para pontos de bônus!>
+npm start
 ```
 
+
+2) Par abrir a documentação Swagger, digite no navegador: 
+
+```
+localhost:3000/docs
+```
+
+
+## :game_die: Banco de dados
+![diagrama banco de dados][diagrama-bd]
+
+<br>
+
+## :bug: Testes
+Os testes automatizados da aplicação foram desenvolvidos com o framework Cypress. Os testes podem ser encontrados no repositório abaixo: 
+
+<a href="https://github.com/saalua/luizacode-omnichannel-cypress"> Repositório Cypress </a>
+
+<br>
 
 ## 🤝 Squad SPARCK GIRLS
 
@@ -119,3 +152,7 @@ Para usar, siga estas etapas:
     </td>
   </tr>
 </table>
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+[diagrama-bd]: img/diagram.png
