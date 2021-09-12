@@ -51,7 +51,7 @@ USER=postgres
 PASS=senha
 HOST=localhost
 PGPORT=5432
-
+JWTSecret=palavra-secreta
 ```
 
 ## ☕ Usando o Omni Channel
