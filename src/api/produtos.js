@@ -32,7 +32,7 @@ router.get('/:id',
     check('id')
         .not().isEmpty()
         .matches(/\d/)
-        .withMessage('Para consultar um produto é preciso informar seu id, que precisa ser um valor numérico.'),
+        .withMessage('Para consultar um produto é preciso informar seu id, que precisa ser um valor numérico'),
     async (req, res) => {
         
 /*
@@ -58,7 +58,7 @@ router.get('/:id',
         const produto = await produtoService.getProdutoById(idProduto);
         
         if(produto == null) {
-            res.status(404).json("Produto não encontrado.")
+            res.status(404).json("Produto não encontrado")
         } else {
             res.status(200).json(produto);
         }
