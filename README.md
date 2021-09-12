@@ -71,8 +71,14 @@ npm start
 localhost:3000/docs
 ```
 
+## :page_with_curl: Documentação Swagger
+
+```
+[gif aqui]
+```
 
 ## :game_die: Banco de dados
+Diagrama do banco de dados:
 ![diagrama banco de dados][diagrama-bd]
 
 <br>
@@ -81,6 +87,10 @@ localhost:3000/docs
 Os testes automatizados da aplicação foram desenvolvidos com o framework Cypress. Os testes podem ser encontrados no repositório abaixo: 
 
 <a href="https://github.com/saalua/luizacode-omnichannel-cypress"> Repositório Cypress </a>
+
+```
+[gif aqui]
+```
 
 <br>
 
