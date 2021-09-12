@@ -156,3 +156,4 @@ Os testes automatizados da aplicação foram desenvolvidos com o framework Cypre
 
 <!-- MARKDOWN LINKS & IMAGES -->
 [diagrama-bd]: img/diagram.png
+[endpoints-01]: img/endpoints1.png
