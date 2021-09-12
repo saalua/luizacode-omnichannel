@@ -112,13 +112,8 @@ const produtosPedidosService = new ProdutosPedidosService(produtosPedido);
             case finalizarPedido.pedidoNaoEncontrado:
                 res.status(404).send()
                 break
-<<<<<<< HEAD
-            case finalizarPedido.statusPedidoImpedeFinalizar:
-                res.status(400).json({ errors: [{ msg: 'Só é possível finalizar pedidos que estejam em andamento' }] })
-=======
             case FINALIZAR_PEDIDO.STATUS_PEDIDO_IMPEDE_FINALIZAR:
                 res.status(400).json({ errors: [{ msg: 'Só é possível finalizar pedidos que estejam em andamento.' }] })
->>>>>>> fee370cac8dee4dfe26acc03b58a12928ecf5a1b
                 break
         }
     })
@@ -197,20 +192,6 @@ const erros = validationResult(req);
         }
 
         try {
-<<<<<<< HEAD
-            const { idPedido, idProduto } = req.params;
-            const resposta = await produtosPedidosService.removerProduto(idPedido, idProduto)
-            switch(resposta) {
-                case removerProduto.pedidoProdutoNaoEncontrado:
-                    res.status(404).send();
-                    break;
-                case removerProduto.statusNaoPermiteRemoverProduto:
-                    res.status(400).json("Não é possível alterar o pedido quando o status se encontra como REALIZADA ou RETIRADO");
-                    break;
-                case removerProduto.produtoRemovido:
-                    res.status(200).json("Produto removido com sucesso");
-                    break;
-=======
             const pedido = req.params.idPedido;
             const produto = req = req.params.idProduto;
 
@@ -222,7 +203,6 @@ const erros = validationResult(req);
                 res.status(200).json({"Produto removido com sucesso": {"pedido": pedidoEncontrado, "produto": produtoEncontrado}});
             } else {
                 res.status(400).json("Não é possível alterar o pedido quando o status se encontra como REALIZADA ou RETIRADO.");
->>>>>>> fee370cac8dee4dfe26acc03b58a12928ecf5a1b
             }
 
         } catch(erro) {
