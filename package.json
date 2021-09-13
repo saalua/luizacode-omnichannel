@@ -1,0 +1,38 @@
+{
+  "name": "luizacode-omnichannel",
+  "version": "1.0.0",
+  "description": "\"API NodeJS que desempenha a funcionalidade de Omni Channel do cliente. Projeto proposto no encerramento da aceleração Luiza Code, turma NodeJS.\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/app.js",
+    "swagger": "node src/swagger.js",
+    "dev": "nodemon src/app.js",
+    "fast-start": "node src/app.js --ignore-prestart-scripts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saalua/luizacode-omnichannel.git"
+  },
+  "author": "\"Julia, Layane, Letícia, Luana, Nathália e Walquíria\"",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/saalua/luizacode-omnichannel/issues"
+  },
+  "homepage": "https://github.com/saalua/luizacode-omnichannel#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-routes": "^1.0.1",
+    "express-validator": "^6.12.1",
+    "jsonwebtoken": "^8.5.1",
+    "md5": "^2.3.0",
+    "pg": "^8.7.1",
+    "sequelize": "^6.6.5",
+    "swagger-autogen": "^2.11.2",
+    "swagger-ui-express": "^4.1.6"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
