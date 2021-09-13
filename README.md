@@ -72,35 +72,43 @@ localhost:3000/docs
 ```
 
 ## :page_with_curl: Documentação Swagger
-Endpoints acessíveis sem autenticação: 
+<strong>Endpoints acessíveis sem autenticação: </strong>
+
 - Retornar todas as lojas
 - Retornar todos os produtos e produtos por id
 - Criar um novo cliente
 - Fazer login
 
 ![endpoints][endpoints-01]
+
 <br>
 
-Endpoints com autenticação: 
+<strong>Endpoints com autenticação: </strong>
 
-```
-imagem aqui
-```
+- Retornar todos os pedidos de um cliente
+- Cliente pode criar um novo pedido
+- Retornar um único pedido de um cliente 
+- Fazer login
+
+![endpoints][endpoints-02]
+
 
 ## :game_die: Banco de dados
+
 Diagrama do banco de dados:
+
+<br>
+
 ![diagrama banco de dados][diagrama-bd]
 
 <br>
 
 ## :bug: Testes
-Os testes automatizados da aplicação foram desenvolvidos com o framework Cypress. Os testes podem ser encontrados no repositório abaixo: 
+Os testes automatizados da aplicação foram desenvolvidos com o framework Cypress e os testes podem ser encontrados no repositório abaixo: 
 
 <a href="https://github.com/saalua/luizacode-omnichannel-cypress"> Repositório Cypress </a>
 
-```
-[gif aqui]
-```
+![cypress][cypress]
 
 <br>
 
@@ -177,3 +185,5 @@ Os testes automatizados da aplicação foram desenvolvidos com o framework Cypre
 <!-- MARKDOWN LINKS & IMAGES -->
 [diagrama-bd]: img/diagram.png
 [endpoints-01]: img/endpoints1.png
+[endpoints-02]: img/endpoints2.png
+[cypress]: img/cy.gif
