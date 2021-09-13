@@ -100,6 +100,7 @@ localhost:3000/docs
 - Retornar um único pedido de um cliente 
 - Adicionar e remover produtos
 - Finalizar a compra
+- Retirar a compra
 
 ![endpoints][endpoints-02]
 
