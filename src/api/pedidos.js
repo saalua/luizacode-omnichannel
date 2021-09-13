@@ -45,6 +45,7 @@ router.get('/', auth,
     }]
     #swagger.responses[200] = {
     description: 'Consulta realizada com sucesso.'
+    }
 */
 
         const pedidos = await pedidoService.get();

@@ -102,6 +102,95 @@
         }
       }
     },
+    "/pedidos/{idPedido}": {
+      "get": {
+        "tags": [
+          "Pedidos"
+        ],
+        "description": "Endpoint para a consulta de pedidos do cliente por ID.",
+        "parameters": [
+          {
+            "name": "idPedido",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Consulta realizada com sucesso."
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Pedido não encontrado."
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/pedidos/": {
+      "get": {
+        "tags": [
+          "Pedidos"
+        ],
+        "description": "Endpoint para a consulta de todos os pedidos do cliente.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Consulta realizada com sucesso."
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/pedidos/{idPedido}/retirado": {
+      "patch": {
+        "tags": [
+          "Pedidos"
+        ],
+        "description": "Endpoint para retirar o pedido do cliente.",
+        "parameters": [
+          {
+            "name": "idPedido",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pedido pronto para ser retirado."
+          },
+          "400": {
+            "description": "Houve algum erro na requisição."
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Pedido não encontrado."
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
     "/clientes\r/": {
       "post": {
         "tags": [
@@ -245,6 +334,9 @@
           },
           "401": {
             "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         },
         "security": [
@@ -418,14 +510,6 @@
         "cep": {
           "type": "string",
           "example": "12345678"
-        },
-        "updated_at": {
-          "type": "string",
-          "example": "2021-12-12 03:03:00"
-        },
-        "created_at": {
-          "type": "string",
-          "example": "2021-12-12 03:03:00"
         }
       }
     },
@@ -455,14 +539,6 @@
         "marca": {
           "type": "string",
           "example": "Dell"
-        },
-        "updated_at": {
-          "type": "string",
-          "example": "2021-12-12 03:03:00"
-        },
-        "created_at": {
-          "type": "string",
-          "example": "2021-12-12 03:03:00"
         }
       }
     },
