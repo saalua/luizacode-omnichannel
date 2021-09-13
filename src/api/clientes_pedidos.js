@@ -116,24 +116,29 @@ router.post('/:idCliente/pedidos',
 			}
         
 		*/
-
+            console.log("1")
     const idCliente = req.params.idCliente;
 
     const validacao = await validaCliente(idCliente);
-
+    console.log("1")
     if (!validacao.isValid) {
         return res.status(400).json({ errors: validacao.errors })
     }
+    console.log("1")
+    try {
+        const cliente = validacao.data;
+        const result = await pedidoService.create({idCliente});
+        return res.status(200).json({
+            data: result
+        });   
+    } catch (err) {
+        return res.status(500).json({
+            data: err
+        }); 
+    }
 
-    const cliente = validacao.data;
-    const result = await pedidoService.create({idCliente});
-
-    return res.status(200).json({
-        data: result
-    });   
-    
 });
-//ARRAY DE OBJETO
+
 router.put('/:idCliente/pedidos/:idPedido',
         check('idLoja')
             .isNumeric()
@@ -217,7 +222,12 @@ router.put('/:idCliente/pedidos/:idPedido',
 
         for(let i = 0; i < produtosDB.length; i++) {
             const produto = produtosDB[i]; 
-            await pedidoDB.addProduto(produto);
+            try {
+                await pedidoDB.addProduto(produto);
+            } catch (e) {
+                console.log(e)
+            }
+            
         }; 
         
         pedidoDB.idLoja = idLoja;

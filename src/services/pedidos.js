@@ -51,7 +51,8 @@ class PedidoService {
 
     async create(pedido) {
         const {idCliente} = pedido;
-        return await this.model.create({status: STATUS.ANDAMENTO, idCliente});
+        console.log(idCliente)
+        return await this.model.create({status: STATUS.ANDAMENTO, idCliente, createdAt: new Date()});
     }
 
     async retirarPedido(idPedido) {
