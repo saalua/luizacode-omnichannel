@@ -12,8 +12,9 @@ module.exports = (sequelize, DataTypes) => {
             timestamps: false,
         }
     );
-
-    //ProdutosPedidos.removeAttribute('id');
+  
+    ProdutosPedidos.removeAttribute('id');
+ 
 
     return ProdutosPedidos;
 };

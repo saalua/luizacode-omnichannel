@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/app.js",
+    "swagger": "node src/swagger.js",
     "dev": "nodemon src/app.js",
     "fast-start": "node src/app.js --ignore-prestart-scripts",
     "swagger": "node src/swagger.js"

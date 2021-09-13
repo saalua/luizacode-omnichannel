@@ -8,13 +8,16 @@ const lojaService = new LojaService(loja)
 
 router.get('/', async (req, res) => {
 
+
   /*
+
     #swagger.tags = ['Lojas']
     #swagger.description = 'Endpoint para se obter a lista das lojas.' 
     #swagger.responses[200] = {
       schema: { $ref: "#/definitions/Lojas"},
       description: 'Lista de lojas encontrada.'
     }
+ 
 */
 
   const lojas = await lojaService.get()
@@ -22,5 +25,6 @@ router.get('/', async (req, res) => {
     data: lojas
   });
 });
+ 
 
 module.exports = router

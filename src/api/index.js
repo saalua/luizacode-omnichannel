@@ -4,6 +4,7 @@ const lojasRouter = require('./lojas')
 const produtosRouter = require('./produtos')
 const pedidosRouter = require('./pedidos')
 const clientesRouter = require('./clientes')
+
 const clientesPedidosRouter = require('./clientes_pedidos')
 
 const router = express.Router()

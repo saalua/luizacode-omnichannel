@@ -1,4 +1,4 @@
-<h1 align="center"> Luiza &lt;Code> - Omni Channel.</h1>
+<h1 align="center"> Luiza &lt;Code> - Omni Channel</h1>
 
 <p align="center">
   <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" />
@@ -12,28 +12,39 @@
 
 <a href="https://ibb.co/mF5btfN"><img src="https://i.ibb.co/k6250Nm/luiza-banner.png" alt="luiza-banner" width="100%" border="0"></a><br /><a target='_blank' href='https://imgbb.com/'></a><br />
 
-> Linha adicional de texto informativo sobre o que o projeto faz. Sua introdução deve ter cerca de 2 ou 3 linhas. Não exagere, as pessoas não vão ler.
+> O objetivo do projeto final do Luiza < Code > é desenvolver um serviço HTTP que resolve a funcionalidade de Omni Channel do cliente.
 
-## 💻 Preview
+<p align="center">
+  <a href="#heavy_check_mark-pré-requisitos">Requisitos</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-instalação-e-configuração">Instalação e configuração</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-usando-o-omni-channel">Rodando o projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#page_with_curl-documentação-swagger">Endpoints</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#game_die-banco-de-dados">Banco de dados</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+<a href="#bug-testes">Testes</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-squad-sparck-girls">Colaboradoras</a>
+</p>
 
 ## :heavy_check_mark: Pré-requisitos
+API contendo os seguintes endpoints:
+- Listar produtos
+- Listar lojas físicas
+- Cadastrar cliente
+- Adicionar um produto na lista de compra da cliente;
+- Remover um produto da lista de compra da cliente;
+- Finalizar compra
+- Consultar todas as compras realizadas da cliente; 
+
+
+## 🚀 Instalação e configuração
 
 Antes de começar, verifique se você atendeu aos seguintes requisitos:
-* Você tem uma máquina `Windows, Linux ou Mac`.
 * Você instalou a versão mais recente do `npm, node e postgres`
-
-## 🚀 Instalação
 
 Para a instalação, siga estas etapas:
 
-1) Crie um arquivo chamado ```.env``` na raiz do projeto com as variáveis abaixo e o preenche com as informações de autenticação do seu banco de dados, como no exemplo: 
+1) Faça um clone do repositório:
 ```
-DB=postgres
-USER=postgres
-PASS=senha
-HOST=localhost
-PGPORT=5432
-
+  git clone https://github.com/saalua/luizacode-omnichannel.git
 ```
 
 2) Na pasta do projeto, abra o terminal e execute o comando abaixo para instalar as dependências:
@@ -42,14 +53,75 @@ PGPORT=5432
 npm install
 ```
 
+3) Crie um arquivo chamado ```.env``` na raiz do projeto com as variáveis abaixo e o preenche com as informações de autenticação do seu banco de dados, como no exemplo: 
+```
+DB=postgres
+USER=postgres
+PASS=senha
+HOST=localhost
+PGPORT=5432
+JWTSecret=palavra-secreta
+```
+
 ## ☕ Usando o Omni Channel
 
 Para usar, siga estas etapas:
 
+1) Na pasta da aplicação, abra o terminal e digite. O servidor irá iniciar na porta 3000, caso queira trocar a porta, altere no arquivo app.js 
+
 ```
-<Adicione comandos de execução e exemplos que você acha que os usuários acharão úteis. Fornece uma referência de opções para pontos de bônus!>
+npm start
 ```
 
+
+2) Par abrir a documentação Swagger, digite no navegador: 
+
+```
+localhost:3000/docs
+```
+
+## :page_with_curl: Documentação Swagger
+<strong>Endpoints acessíveis sem autenticação: </strong>
+
+- Retornar todas as lojas
+- Retornar todos os produtos e produtos por id
+- Retornar todos os produtos
+- Criar um novo cliente
+- Fazer login
+
+![endpoints][endpoints-01]
+
+<br>
+
+<strong>Endpoints com autenticação: </strong>
+
+- Retornar todos os pedidos de um cliente
+- Criar um novo pedido
+- Retornar um único pedido de um cliente 
+- Adicionar e remover produtos
+- Finalizar a compra
+
+![endpoints][endpoints-02]
+
+
+## :game_die: Banco de dados
+
+Diagrama do banco de dados:
+
+<br>
+
+![diagrama banco de dados][diagrama-bd]
+
+<br>
+
+## :bug: Testes
+Os testes automatizados da aplicação foram desenvolvidos com o framework Cypress e os testes podem ser encontrados no repositório abaixo: 
+
+<a href="https://github.com/saalua/luizacode-omnichannel-cypress"> Repositório Cypress </a>
+
+![cypress][cypress]
+
+<br>
 
 ## 🤝 Squad SPARCK GIRLS
 
@@ -119,3 +191,10 @@ Para usar, siga estas etapas:
     </td>
   </tr>
 </table>
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+[diagrama-bd]: img/diagram.png
+[endpoints-01]: img/endpoints1.png
+[endpoints-02]: img/endpoints2.png
+[cypress]: img/cy.gif
