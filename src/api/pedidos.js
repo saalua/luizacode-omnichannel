@@ -4,10 +4,12 @@ const { pedido } = require('../models');
 const { PedidoService } = require('../services/pedidos');
 const pedidoService = new PedidoService(pedido);
 
-router.get('/:idPedido',
+const auth = require('./validateAuth')
+
+router.get('/:idPedido', auth,
     async (req, res) => {
 
-        /*
+/*
     #swagger.tags = ['Pedidos']
     #swagger.description = 'Endpoint para a consulta de pedidos do cliente por ID.' 
     #swagger.security = [{
@@ -32,10 +34,10 @@ router.get('/:idPedido',
         }
     });
 
-router.get('/',
+router.get('/', auth,
     async (req, res) => {
 
-        /*
+/*
     #swagger.tags = ['Pedidos']
     #swagger.description = 'Endpoint para a consulta de todos os pedidos do cliente.' 
     #swagger.security = [{
@@ -51,10 +53,10 @@ router.get('/',
         });
     });
 
-router.patch('/:idPedido/retirado',
+router.patch('/:idPedido/retirado', auth,
     async (req, res) => {
 
-        /*
+/*
     #swagger.tags = ['Pedidos']
     #swagger.description = 'Endpoint para retirar o pedido do cliente.' 
     #swagger.security = [{

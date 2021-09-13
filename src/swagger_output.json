@@ -102,7 +102,7 @@
         }
       }
     },
-    "/clientes/": {
+    "/clientes\r/": {
       "post": {
         "tags": [
           "Clientes"
@@ -118,7 +118,7 @@
                 "nome": {
                   "example": "any"
                 },
-                "endereco": {
+                "logradouro": {
                   "example": "any"
                 },
                 "bairro": {
@@ -128,6 +128,12 @@
                   "example": "any"
                 },
                 "cep": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "senha": {
                   "example": "any"
                 }
               }
@@ -147,12 +153,51 @@
         }
       }
     },
+    "/clientes\r/login": {
+      "post": {
+        "tags": [
+          "Clientes"
+        ],
+        "description": "Endpoint para o login do usuário, disponibilizando o token de acesso aos recursos de pedido.",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "example": "any"
+                },
+                "senha": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Login feito com sucesso."
+          },
+          "400": {
+            "description": "Houve algum erro na requisição."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "404": {
+            "description": "Usuário não cadastrado."
+          }
+        }
+      }
+    },
     "/clientes/{idCliente}/pedidos": {
       "get": {
         "tags": [
           "Pedidos"
         ],
-        "description": "Endpoint para o obter os pedidos do cliente.",
+        "description": "Endpoint para obter os pedidos do cliente.",
         "parameters": [
           {
             "name": "idCliente",
@@ -167,8 +212,16 @@
           },
           "400": {
             "description": "Houve algum erro na requisição."
+          },
+          "401": {
+            "description": "Unauthorized"
           }
-        }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
       },
       "post": {
         "tags": [
@@ -189,8 +242,16 @@
           },
           "400": {
             "description": "Houve algum erro na requisição."
+          },
+          "401": {
+            "description": "Unauthorized"
           }
-        }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
       }
     },
     "/clientes/{idCliente}/pedidos/{idPedido}": {
@@ -198,7 +259,7 @@
         "tags": [
           "Pedidos"
         ],
-        "description": "Endpoint para o retonrar um pedido do cliente pelo ID.",
+        "description": "Endpoint para o retornar um pedido do cliente pelo ID.",
         "parameters": [
           {
             "name": "idCliente",
@@ -220,10 +281,18 @@
           "400": {
             "description": "Houve algum erro na requisição."
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "404": {
             "description": "Pedido não encontrado."
           }
-        }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
       },
       "put": {
         "tags": [
@@ -266,10 +335,18 @@
           "400": {
             "description": "Não e permitido cadastrar mais de um produto da mesma categoria."
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "404": {
             "description": "Houve um erro na requisição."
           }
-        }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
       }
     },
     "/clientes/{idCliente}/pedidos/{idPedido}/finalizar": {
@@ -299,10 +376,18 @@
           "400": {
             "description": "Não é possível finalizar se o pedido está em andamento."
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "404": {
             "description": "Houve um erro na requisição."
           }
-        }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
       }
     }
   },

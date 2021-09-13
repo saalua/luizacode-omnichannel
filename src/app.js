@@ -3,13 +3,12 @@ const routers = require('./api')
 const { sequelize } = require('./models')
 const swaggerUi = require('swagger-ui-express')
 const swaggerFile = require('./swagger_output.json')
-
 const app = express()
 
 app.use(express.json())
 app.use(express.urlencoded({  extended:true }));
-app.use('/', routers)
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile))
+app.use('/', routers)
 
 
 sequelize.sync().then(() => {
