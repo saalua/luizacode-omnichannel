@@ -15,12 +15,12 @@
 > O objetivo do projeto final do Luiza < Code > é desenvolver um serviço HTTP que resolve a funcionalidade de Omni Channel do cliente.
 
 <p align="center">
-  <a href="#heavy_check_mark-pré-requisitos">Requisitos</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-instalação-e-configuração">Instalação e configuração</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-usando-o-omni-channel">Rodando o projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#page_with_curl-documentação-swagger">Endpoints</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#game_die-banco-de-dados">Banco de dados</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-<a href="#bug-testes">Testes</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#heavy_check_mark-pré-requisitos">Requisitos</a>&nbsp;&nbsp;|&nbsp;
+  <a href="#-instalação-e-configuração">Instalação e configuração</a>&nbsp;&nbsp;|&nbsp
+  <a href="#-usando-o-omni-channel">Rodando o projeto</a>&nbsp;&nbsp;|&nbsp;
+  <a href="#page_with_curl-documentação-swagger">Endpoints</a>&nbsp;&nbsp;|&nbsp;
+  <a href="#game_die-banco-de-dados">Banco de dados</a>&nbsp;&nbsp;|&nbsp;
+<a href="#bug-testes">Testes</a>&nbsp;&nbsp;|&nbsp;
   <a href="#-squad-sparck-girls">Colaboradoras</a>
 </p>
 
