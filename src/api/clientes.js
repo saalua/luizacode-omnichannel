@@ -6,7 +6,7 @@ const router = express.Router();
 const { body, validationResult } = require('express-validator');
 
 const { cliente } = require('../models');
-const ClienteService = require('../services/clientes');
+const { ClienteService }  = require('../services/cliente');
 const clienteService = new ClienteService(cliente);
 
 const jwt = require('jsonwebtoken');

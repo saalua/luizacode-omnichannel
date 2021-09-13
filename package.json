@@ -8,7 +8,8 @@
     "start": "node src/app.js",
     "swagger": "node src/swagger.js",
     "dev": "nodemon src/app.js",
-    "fast-start": "node src/app.js --ignore-prestart-scripts"
+    "fast-start": "node src/app.js --ignore-prestart-scripts",
+    "swagger": "node src/swagger.js"
   },
   "repository": {
     "type": "git",

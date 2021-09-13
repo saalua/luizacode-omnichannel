@@ -1,28 +1,37 @@
 class ProdutosPedidosService {
+
     constructor(produtosPedidoModel) {
-        this.produtosPedido = produtosPedidoModel
+        this.model = produtosPedidoModel;
     }
  
-    async removerProduto(idPedido, idProduto) {
-        console.log(idPedido, idProduto)
-        const produtoRemovido = await this.produtosPedido.destroy({
+    async delete(idPedido, idProduto){
+        const result = await this.model.destroy({
             where: {
-                idPedido,
-                idProduto
+                ProdutoId: idProduto,
+                PedidoId: idPedido
             }
         });
-            
-        return produtoRemovido;
+        return result;
     }
 
-    async adicionar(idPedido, idProduto){
-        const produtoAdicionado = await this.produtosPedido.create({
-            idProduto: idProduto,
-            idPedido: idPedido
+    async cadastrar(idPedido, idProduto){
+        const produtoAdicionado = await this.model.create({
+            ProdutoId: idProduto,
+            PedidoId: idPedido
         });
         return produtoAdicionado;
     }
 
+    async getByIdPedido(idPedido) {
+        const result = await this.model.findAll({
+            where: {
+                PedidoId: idPedido
+            }
+        })
+        return result;
+    }
+
+    
 }
 
 module.exports = {ProdutosPedidosService} 

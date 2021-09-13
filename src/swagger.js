@@ -39,9 +39,7 @@ const doc = {
             logradouro: "Rua Lago das Rosas.",
             bairro: "Lago das Rosas",
             cidade: "São Paulo",
-            cep: "12345678",
-            updated_at: '2021-12-12 03:03:00',
-            created_at: '2021-12-12 03:03:00'
+            cep: "12345678"
         },
         Produtos: {
             id: 1,
@@ -49,9 +47,7 @@ const doc = {
             categoria: 'Informática',
             valor: 2500,
             descricao: 'Notebook com memória de 4GB, SSD de 128GB, processamento em 64bits, branco.',
-            marca: 'Dell',
-            updated_at: '2021-12-12 03:03:00',
-            created_at: '2021-12-12 03:03:00'
+            marca: 'Dell'
         },
         Clientes: {
             nome: "Ana",

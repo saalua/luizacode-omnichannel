@@ -22,8 +22,9 @@ pedido.belongsTo(cliente, { foreignKey: 'idCliente' });
 loja.hasMany(pedido, { foreignKey: 'idLoja' });
 pedido.belongsTo(loja, { foreignKey: 'idLoja' });
 
-produto.hasMany(produtosPedido, { foreignKey: 'idProduto' });
-pedido.hasMany(produtosPedido, { foreignKey: 'idPedido' });
+produto.belongsToMany(pedido, { through: 'ProdutosPedidos' });
+pedido.belongsToMany(produto, { through: 'ProdutosPedidos' });
+
 
 const db = {
   loja,

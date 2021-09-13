@@ -1,3 +1,4 @@
+  
 module.exports = (sequelize, DataTypes) => {
     const ProdutosPedidos = sequelize.define(
         'ProdutosPedidos',
@@ -11,8 +12,9 @@ module.exports = (sequelize, DataTypes) => {
             timestamps: false,
         }
     );
-
+  
     ProdutosPedidos.removeAttribute('id');
+ 
 
     return ProdutosPedidos;
 };
