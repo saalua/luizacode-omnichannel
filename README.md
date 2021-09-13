@@ -85,6 +85,7 @@ localhost:3000/docs
 
 - Retornar todas as lojas
 - Retornar todos os produtos e produtos por id
+- Retornar todos os produtos
 - Criar um novo cliente
 - Fazer login
 
@@ -95,9 +96,10 @@ localhost:3000/docs
 <strong>Endpoints com autenticação: </strong>
 
 - Retornar todos os pedidos de um cliente
-- Cliente pode criar um novo pedido
+- Criar um novo pedido
 - Retornar um único pedido de um cliente 
-- Fazer login
+- Adicionar e remover produtos
+- Finalizar a compra
 
 ![endpoints][endpoints-02]
 
